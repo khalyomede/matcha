@@ -20,7 +20,7 @@ Test library for PHP.
 In your project, include the dependency for Matcha:
 
 ```bash
-composer require khalyomede\matcha:0.*
+composer require --dev khalyomede\matcha:0.*
 ```
 
 ## Getting started
