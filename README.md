@@ -2,6 +2,11 @@
 
 Test library for PHP.
 
+
+![Packagist](https://img.shields.io/packagist/v/khalyomede/matcha.svg)
+![PHP from Packagist](https://img.shields.io/packagist/php-v/khalyomede/matcha.svg)
+![Packagist](https://img.shields.io/packagist/l/khalyomede/matcha.svg)
+
 <div style="text-align: center;">
     <img style="margin-left: auto; margin-right: auto;" src="https://user-images.githubusercontent.com/15908747/41511668-c68e330e-727b-11e8-89b6-c18d2d07af18.png" alt="Matcha logo" height="90px" />
 </div>
