@@ -1,6 +1,6 @@
 {
     "name": "khalyomede/matcha",
-    "description": "Testing tool for PHP",
+    "description": "Test tool for PHP",
     "type": "library",
     "license": "MIT",
     "authors": [
