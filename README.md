@@ -13,6 +13,7 @@ Test library for PHP.
 - [Examples](#examples)
 - [Full example](#full-example)
 - [Modifiers](#modifiers)
+- [Credits](#credits)
 
 ## Installation
 
@@ -272,3 +273,7 @@ You can also use the strict check on:
 
 - Exception checking (parent class will not match anymore)
 - Instance of class (parent class will not match anymore)
+
+## Credits
+
+- Logo by [Made](https://thenounproject.com/made.somewhere/) from [Noun project](https://thenounproject.com/) (modified version of logo is currenctly used, check out the [original version](https://thenounproject.com/term/green-tea/952777/))
