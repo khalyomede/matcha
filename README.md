@@ -75,7 +75,7 @@ $ php test/string.php
   trim
     ✔ should return the same string because it has no spaces around
   
-  1 passing (0ms)
+  1 passing (1ms)
 ```
 
 ### Checking the type of a return value
@@ -97,7 +97,7 @@ $ php test/string.php
   trim
     ✔ should return a string
 
-  1 passing (0ms)
+  1 passing (1ms)
 ```
 
 ### Checking the type of an object
@@ -119,7 +119,7 @@ $ php test/string.php
   datetime
     ✔ should return a DateTime instance
 
-  1 passing (0ms)
+  1 passing (15ms)
 ```
 
 ### Checking if a portion of code will throw an exception
@@ -143,7 +143,7 @@ $ php test/string.php
   pdo
     ✔ should throw an ArgumentCountError if it has not the correct argument count
 
-  1 passing (0ms)
+  1 passing (56ms)
 ```
 
 ## Full example
@@ -192,6 +192,25 @@ describe('php', function() {
     });
   });
 });
+```
+
+Running this script will display:
+
+```bash
+$ php example/full-example.php
+ php
+  trim
+    ✔ should return the same string
+    ✔ should trim multiple spaces around
+  str_shuffle
+    ✔ should not return the same string
+    ✔ should return a string if the input is null
+  round
+    ✔ should strictly return the rounded number
+  PDO
+    ✔ should throw an exception if the database information are invalid
+
+ 6 passing (86ms)
 ```
 
 ## Modifiers
