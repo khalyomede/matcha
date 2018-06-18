@@ -297,7 +297,7 @@
                     break;
                 
                 default:
-                    throw new InvalidArgumentException(sprintf('the type check should be against one of the allowed types: %s', array_join(static::ALLOWED_TYPES)));
+                    throw new InvalidArgumentException(sprintf('the type check should be against one of the allowed types: %s', implode(static::ALLOWED_TYPES)));
             }
             
             return $this;
