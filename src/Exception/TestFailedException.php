@@ -2,6 +2,7 @@
     namespace Khalyomede\Exception;
 
     use Exception;
+    use InvalidArgumentException;
 
     /**
      * Exception that should be thrown whenever a test failed.
