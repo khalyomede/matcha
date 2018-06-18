@@ -258,7 +258,7 @@
          * @return int
          */
         private static function elapsedTime(): string {
-            return round(static::$elapsed_time / 1000, 0);
+            return round(static::$elapsed_time * 1000, 0);
         }
 
         /**
