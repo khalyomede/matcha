@@ -3,6 +3,7 @@
 
     use Khalyomede\Exception\TestFailedException;
     use Throwable;
+    use InvalidArgumentException;
 
     /**
      * Expect test syntax style to use an eloquent way to describe the testing.
