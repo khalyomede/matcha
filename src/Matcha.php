@@ -70,6 +70,20 @@
         protected static $failure_index = 1;
 
         /**
+         * Stores the start time of the hole test.
+         * 
+         * @var int
+         */
+        protected static $start_time = 0;
+
+        /**
+         * Stores the end time of the end of the hole test.
+         * 
+         * @var int
+         */
+        protected static $end_time = 0;
+
+        /**
          * Display the descrption and continue the testing algorithm.
          * 
          * @param   string      $description    The message to display in console.
@@ -77,12 +91,14 @@
          * @return  Khalyomede\Matcha
          */
         public static function describe(string $description, callable $function): Matcha {
+            static::setStartTimeIfItIsTheFirstDescribe();
             static::printDescribe($description);
             static::$nesting_level++;
 
             call_user_func($function);
 
             static::$nesting_level--;
+            static::setEndTImeIfItIsTheLastDescribe();
             static::reportIfItIsTheLastDescribe();
             
             return new static;
@@ -235,6 +251,8 @@
 
             $report .= ' (' . static::elapsedTime() . 'ms)' . PHP_EOL;
 
+            $report .= PHP_EOL . static::DELIMITER . 'Done in ' . static::testDurationValue() . static::testDurationUnit() . PHP_EOL;
+
             if( static::$failed_tests > 0 ) {
                 $report .= PHP_EOL;
             }
@@ -345,6 +363,74 @@
          */
         private static function exitValue() {
             return static::$failed_tests > 0 ? -1 : 0;
+        }
+
+        /**
+         * Stores the start time if it is the begining of the test.
+         * 
+         * @return Khalyomede\Matcha
+         */
+        protected static function setStartTimeIfItIsTheFirstDescribe(): Matcha {
+            if( static::$nesting_level === 1 ) {
+                static::$start_time = microtime(true) * 1000;
+            }
+            
+            return new static;
+        }
+
+        /**
+         * Stores the end time if it is the end of the test.
+         * 
+         * @return Khalyomede\Matcha
+         */
+        protected static function setEndTImeIfItIsTheLastDescribe(): Matcha {
+            if( static::$nesting_level === 1 ) {
+                static::$end_time = microtime(true) * 1000;
+            }
+
+            return new static;
+        }
+
+        /**
+         * Get the raw elapsed duratin time for the hole test.
+         * 
+         * @return int
+         */
+        private static function testDuration(): int {
+            return static::$end_time - static::$start_time;
+        }
+
+        /**
+         * Get the elapsed duration time for the hole test.
+         * 
+         * @return int
+         * @see static::testDurationUnit()
+         */
+        protected static function testDurationValue(): int {
+            $duration = static::testDuration();
+
+            if( $duration > 1000 ) {
+                $duration /= 1000;
+            }
+
+            return round($duration);
+        }
+
+        /**
+         * Get the unit of the elapsed duration for the hole test.
+         * 
+         * @return string
+         * @see static::testDurationValue()
+         */
+        private static function testDurationUnit(): string {
+            $duration = static::testDuration();
+            $unit = 'ms';
+
+            if( $duration > 1000 ) {
+                $unit = 's';
+            }
+
+            return $unit;
         }
     }
 ?>
