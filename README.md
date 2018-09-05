@@ -17,6 +17,7 @@ Test library for PHP.
 - [Getting started](#getting-started)
 - [Examples](#examples)
 - [Full example](#full-example)
+- [API](api)
 - [Modifiers](#modifiers)
 - [Credits](#credits)
 
@@ -53,6 +54,7 @@ require(__DIR__ . '/../vendor/autoload.php');
 - [Checking the type of a return value](#checking-the-type-of-a-return-value)
 - [Checking the type of an object](#checking-the-type-of-an-object)
 - [Checking if a portion of code will throw an exception](#checking-if-a-portion-of-code-will-throw-an-exception)
+- [Checking if a portion of code will throw an exception with the desired message](#checking-if-a-portion-of-code-will-throw-an-exception-with-the-desired-message)
 
 ### Checking the return value
 
@@ -146,6 +148,35 @@ $ php test/string.php
   1 passing (56ms)
 ```
 
+### Checking if a portion of code will throw an exception with the desired message
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+describe('datetime', function() {
+  it('should throw an exception if the date is invalid', function() {
+    expect(function() {
+      $date = new DateTime('hello world');
+    })->toThrow('Exception', 'Hello world');
+  });
+});
+```
+
+Running this script will display:
+
+```
+$ php example/example-5.php
+ datetime
+   1) should throw an exception if the date is invalid
+
+ 1 failed (2ms)
+
+ Done in 1ms
+
+ 1) should throw an exception if the date is invalid
+    expected "DateTime::__construct(): Failed to parse time string (hello world) at position 0 (h): The timezone could not be found in the database" to be equal to the exception message "Hello world"
+```
+
 ## Full example
 
 This example is intended to show you how can all of these function can be mixed together.
@@ -212,6 +243,18 @@ $ php example/full-example.php
 
  6 passing (86ms)
 ```
+
+## API
+
+- [`expect()`](#expect)
+  - [`not`](#not)
+  - [`strictly`](#strictly)
+  - [`toBe`](#tobe)
+  - [`toThrow`](#toThrow)
+  - [`a`](#a)
+  - [`an`](#an)
+  - [`anInstanceOf`](#aninstanceof)
+  - [`equalTo`](#equalto)
 
 ## Modifiers
 
