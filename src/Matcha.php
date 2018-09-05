@@ -312,12 +312,18 @@
             else if( is_null($expected) === true ) {
                 $expected = 'null';
             }
+            else if( is_string($expected) === true ) {
+                $expected = '"' . $expected . '"';
+            }
 
             if( is_object($actual) === true ) {
                 $actual = get_class($actual);
             }
             else if( is_null($actual) === true ) {
                 $actual = 'null';
+            }
+            else if( is_string($actual) === true ) {
+                $actual = '"' . $actual . '"';
             }
             
             if( $exception instanceof TestFailedException ) {                
@@ -345,6 +351,9 @@
                 }
                 else if( $exception->isCheckingException() === true ) {
                     $message .= " be an instance of";
+                }
+                else if( $exception->isCheckingExceptionMessage() === true ) {
+                    $message .= " be equal to the exception message";
                 }
 
                 $message .= " $actual";
