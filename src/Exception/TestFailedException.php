@@ -41,7 +41,12 @@
          */
         const TEST_EXCEPTION = 4;
 
-        const ALLOWED_TEST_TYPES = [1,2,3,4];
+        /**
+         * Settle that the test was checking if the expected value throwed a correct message exception.
+         */
+        const TEST_EXCEPTION_MESSAGE = 5;
+
+        const ALLOWED_TEST_TYPES = [1,2,3,4,5];
 
         /**
          * Stores the expected result of the test.
@@ -233,6 +238,15 @@
          */
         public function isCheckingException(): bool {
             return $this->test_type === static::TEST_EXCEPTION;
+        }
+
+        /**
+         * Returns true if the test was checking that the expected value was the message of a thrown exception, else returns false.
+         * 
+         * @return bool
+         */
+        public function isCheckingExceptionMessage(): bool {
+            return $this->test_type === static::TEST_EXCEPTION_MESSAGE;
         }
     }
 ?>
