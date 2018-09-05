@@ -372,7 +372,7 @@
          * @param string $exception  The name of the instance of the exception to check on.
          * @return Khalyomede\Style\Expect
          */
-        public function toThrow(string $instance): Expect {
+        public function toThrow(string $instance, ?string $message = null): Expect {
             if( $this->strict_comparison === true ) {
                 if( $this->negative_comparison === true ) {
                     if( is_object($this->expected) === true && get_class($this->expected) === $instance ) {
@@ -410,6 +410,11 @@
                             ->expected($this->expected)
                             ->actual($instance)
                             ->testType(TestFailedException::TEST_EXCEPTION);
+                    }
+                    else if( is_null($message) === false && $this->expected->getMessage() !== $message ) {
+                        throw (new TestFailedException(''))->expected($this->expected->getMessage())
+                            ->actual($message)
+                            ->testType(TestFailedException::TEST_EXCEPTION_MESSAGE);
                     }
                 }
             }
