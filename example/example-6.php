@@ -1,7 +1,7 @@
 <?php
     require(__DIR__ . '/../vendor/autoload.php');
 
-    describe('useless', function() {
+    describe('null', function() {
         it('should return null', function() {
             expect(null)->toBe()->null();
         });

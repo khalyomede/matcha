@@ -55,6 +55,7 @@ require(__DIR__ . '/../vendor/autoload.php');
 - [Checking the type of an object](#checking-the-type-of-an-object)
 - [Checking if a portion of code will throw an exception](#checking-if-a-portion-of-code-will-throw-an-exception)
 - [Checking if a portion of code will throw an exception with the desired message](#checking-if-a-portion-of-code-will-throw-an-exception-with-the-desired-message)
+- [Checking if a value is null](#checking-if-a-value-is-null)
 
 ### Checking the return value
 
@@ -177,6 +178,54 @@ $ php example/example-5.php
     expected "DateTime::__construct(): Failed to parse time string (hello world) at position 0 (h): The timezone could not be found in the database" to be equal to the exception message "Hello world"
 ```
 
+### Checking if a value is null
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+describe('null', function() {
+  it('should return null', function() {
+    expect(null)->toBe()->null();
+  });
+});
+```
+
+Running this script will display:
+
+```
+$ php example/example-6.php
+ null
+   ✔ should return null
+
+ 1 passing (1ms)
+
+ Done in 1ms
+```
+
+### Checking if a value is a resource
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+describe('fopen', function() {
+  it('should be a resource', function() {
+    expect( fopen('./example/example-7.php', 'r') )->toBe()->a('resource');
+  });
+});
+```
+
+Running this script will display:
+
+```
+$ php example/example-7.php
+ fopen
+   ✔ should be a resource
+
+ 1 passing (1ms)
+
+ Done in 1ms
+```
+
 ## Full example
 
 This example is intended to show you how can all of these function can be mixed together.
@@ -255,6 +304,7 @@ $ php example/full-example.php
   - [`an`](#an)
   - [`anInstanceOf`](#aninstanceof)
   - [`equalTo`](#equalto)
+  - [`null`](#null)
 
 ## Modifiers
 

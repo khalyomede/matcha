@@ -33,13 +33,15 @@
         CONST TYPE_BOOL = 'bool';
         const TYPE_OBJECT = 'object';
         const TYPE_ARRAY = 'array';
+        const TYPE_RESOURCE = 'resource';
         const ALLOWED_TYPES = [
             'string',
             'float',
             'int',
             'bool',
             'object',
-            'array'
+            'array',
+            'resource'
         ];
 
         /**
@@ -316,6 +318,25 @@
                             throw (new TestFailedException(''))
                                 ->expected($this->expected)
                                 ->actual('array')
+                                ->testType(TestFailedException::TEST_TYPE);
+                        }
+                    }
+
+                    break;
+
+                case static::TYPE_RESOURCE:
+                    if( $this->negative_comparison === true ) {
+                        if( is_resource($this->expected) === true ) {
+                            throw (new TestFailedException)->expected($this->expected)
+                                ->actual('resource')
+                                ->testType(TestFailedException::TEST_TYPE)
+                                ->negativeTest();
+                        }
+                    }
+                    else {
+                        if( is_resource($this->expected) === false ) {
+                            throw (new TestFailedException)->expected($this->expected)
+                                ->actual('resource')
                                 ->testType(TestFailedException::TEST_TYPE);
                         }
                     }
