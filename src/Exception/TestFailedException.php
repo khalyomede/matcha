@@ -46,7 +46,12 @@
          */
         const TEST_EXCEPTION_MESSAGE = 5;
 
-        const ALLOWED_TEST_TYPES = [1,2,3,4,5];
+        /**
+         * Settle that the test was checking the nullily of the value.
+         */
+        const TEST_NULLITY = 6;
+
+        const ALLOWED_TEST_TYPES = [1,2,3,4,5,6];
 
         /**
          * Stores the expected result of the test.
@@ -91,7 +96,7 @@
          * @param int       $code       The error code attached to the exception.
          * @param Exception $previous   The previous exception catched (to improve the stack trace debug).
          */
-        public function __construct($message, $code = 0, Exception $previous = null) {
+        public function __construct($message = '', $code = 0, Exception $previous = null) {
             $this->expected = '';
             $this->actual = '';
             $this->positive_test = true;
@@ -247,6 +252,15 @@
          */
         public function isCheckingExceptionMessage(): bool {
             return $this->test_type === static::TEST_EXCEPTION_MESSAGE;
+        }
+
+        /**
+         * Returns true if the test was checking the nullity of the expected value, else returns false.
+         * 
+         * @return bool
+         */
+        public function isCheckingNullity(): bool {
+            return $this->test_type === static::TEST_NULLITY;
         }
     }
 ?>

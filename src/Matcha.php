@@ -355,6 +355,9 @@
                 else if( $exception->isCheckingExceptionMessage() === true ) {
                     $message .= " be equal to the exception message";
                 }
+                else if( $exception->isCheckingNullity() === true ) {
+                    $message .= " be";
+                }
 
                 $message .= " $actual";
             }

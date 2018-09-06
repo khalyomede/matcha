@@ -161,6 +161,32 @@
         }
 
         /**
+         * Throws an exception if the actual value is not null.
+         * 
+         * @return Khalyomede\Style\Expect
+         * @throws TestFailedException If the actual value is not null.
+         */
+        public function null(): Expect {
+            if( $this->negative_comparison === true ) {
+                if( is_null($this->expected) === true ) {
+                    throw (new TestFailedException)->expected(null)
+                        ->actual($this->expected)
+                        ->testType(TestFailedException::TEST_NULLITY)
+                        ->negativeTest();
+                }
+            }
+            else {
+                if( is_null($this->expected) === false ) {
+                    throw (new TestFailedException)->expected($this->expected)
+                        ->actual(null)
+                        ->testType(TestFailedException::TEST_NULLITY);
+                }
+            }
+
+            return $this;
+        }
+
+        /**
          * Throws an exception if the actual value is not of the given type.
          * 
          * @param string    $type   The type you want to check on.
