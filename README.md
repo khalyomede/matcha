@@ -328,6 +328,8 @@ $ php example/full-example.php
   - [`anInstanceOf`](#aninstanceof)
   - [`equalTo`](#equalto)
   - [`null`](#null)
+  - [`true`](#true)
+  - [`false`](#false)
 
 ## Modifiers
 
