@@ -490,7 +490,7 @@
                 if( $this->negative_comparison === true ) {
                     if( $this->expected !== false ) {
                         throw (new TestFailedException)->expected($this->expected)
-                            ->actual(false)
+                            ->actual(true)
                             ->strictTest()
                             ->negativeTest()
                             ->testType(TestFailedException::TEST_POSITIVITY);
@@ -499,7 +499,7 @@
                 else {
                     if( $this->expected !== true ) {
                         throw (new TestFailedException)->expected($this->expected)
-                            ->actual(false)
+                            ->actual(true)
                             ->strictTest()
                             ->testType(TestFailedException::TEST_POSITIVITY);
                     }
@@ -519,6 +519,52 @@
                         throw (new TestFailedException)->expected($this->expected)
                             ->actual(true)
                             ->testType(TestFailedException::TEST_POSITIVITY);
+                    }
+                }
+            }
+
+            return $this;
+        }
+
+        /**
+         * Throws an exception if the expected value is not false.
+         * 
+         * @throws TestFailedException If the expected value is not false.
+         */
+        public function false(): Expect {
+            if( $this->strict_comparison === true ) {
+                if( $this->negative_comparison === true ) {
+                    if( $this->expected === false ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(false)
+                            ->strictTest()
+                            ->negativeTest()
+                            ->testType(TestFailedException::TEST_NEGATIVITY);
+                    }
+                }
+                else {
+                    if( $this->expected !== false ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(false)
+                            ->strictTest()
+                            ->testType(TestFailedException::TEST_NEGATIVITY);
+                    }
+                }
+            }
+            else {
+                if( $this->negative_comparison === true ) {
+                    if( $this->expected == false ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(false)
+                            ->negativeTest()
+                            ->testType(TestFailedException::TEST_NEGATIVITY);
+                    }
+                }
+                else {
+                    if( $this->expected != false ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(false)
+                            ->testType(TestFailedException::TEST_NEGATIVITY);
                     }
                 }
             }

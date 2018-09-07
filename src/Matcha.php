@@ -361,10 +361,7 @@
                 else if( $exception->isCheckingExceptionMessage() === true ) {
                     $message .= " be equal to the exception message";
                 }
-                else if( $exception->isCheckingNullity() === true ) {
-                    $message .= " be";
-                }
-                else if( $exception->isCheckingPositivity() === true ) {
+                else if( $exception->isCheckingNullity() === true || $exception->isCheckingPositivity() === true || $exception->isCheckingNegativity() === true ) {
                     $message .= " be";
                 }
 
