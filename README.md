@@ -56,6 +56,7 @@ require(__DIR__ . '/../vendor/autoload.php');
 - [Checking if a portion of code will throw an exception](#checking-if-a-portion-of-code-will-throw-an-exception)
 - [Checking if a portion of code will throw an exception with the desired message](#checking-if-a-portion-of-code-will-throw-an-exception-with-the-desired-message)
 - [Checking if a value is null](#checking-if-a-value-is-null)
+- [Checking if a value is true](#checking-if-a-value-is-true)
 
 ### Checking the return value
 
@@ -224,6 +225,28 @@ $ php example/example-7.php
  1 passing (1ms)
 
  Done in 1ms
+```
+
+### Checking if a value is true
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+describe('empty', function() {
+  it('should return false if the string contains something', function() {
+    expect(empty(''))->toBe()->true();
+  });
+});
+```
+
+```
+$ php example/example-8.php
+ empty
+   ✔ should return false if the string contains something
+
+ 1 passing (1ms)
+
+ Done in 0ms
 ```
 
 ## Full example

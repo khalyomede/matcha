@@ -51,7 +51,17 @@
          */
         const TEST_NULLITY = 6;
 
-        const ALLOWED_TEST_TYPES = [1,2,3,4,5,6];
+        /**
+         * Settle that the test was checking the positivity of the value.
+         */
+        const TEST_POSITIVITY = 7;
+
+        /**
+         * Settle that the test was checking the negativity of the value.
+         */
+        const TEST_NEGATIVITY = 8;
+
+        const ALLOWED_TEST_TYPES = [1,2,3,4,5,6,7,8];
 
         /**
          * Stores the expected result of the test.
@@ -261,6 +271,20 @@
          */
         public function isCheckingNullity(): bool {
             return $this->test_type === static::TEST_NULLITY;
+        }
+
+        /**
+         * Returns true if the test was checking the positivity of the expected value, else returns false.
+         */
+        public function isCheckingPositivity(): bool {
+            return $this->test_type === static::TEST_POSITIVITY;
+        }
+
+        /**
+         * Returns true fi the test ws checking the negativity of the expected value, else rerurns fals.
+         */
+        public function isCheckingNegativity(): bool {
+            return $this->test_type === static::TEST_NEGATIVITY;
         }
     }
 ?>

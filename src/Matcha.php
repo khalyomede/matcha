@@ -315,6 +315,9 @@
             else if( is_string($expected) === true ) {
                 $expected = '"' . $expected . '"';
             }
+            else if( is_bool($expected) === true ) {
+                $expected = $expected ? 'true' : 'false';
+            }
 
             if( is_object($actual) === true ) {
                 $actual = get_class($actual);
@@ -324,6 +327,9 @@
             }
             else if( is_string($actual) === true ) {
                 $actual = '"' . $actual . '"';
+            }
+            else if( is_bool($actual) === true ) {
+                $actual = $actual ? 'true' : 'false';
             }
             
             if( $exception instanceof TestFailedException ) {                
@@ -356,6 +362,9 @@
                     $message .= " be equal to the exception message";
                 }
                 else if( $exception->isCheckingNullity() === true ) {
+                    $message .= " be";
+                }
+                else if( $exception->isCheckingPositivity() === true ) {
                     $message .= " be";
                 }
 

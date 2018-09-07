@@ -479,5 +479,51 @@
             
             return $this;
         }
+
+        /**
+         * Throws an exception if the expected value is not true.
+         * 
+         * @throws TestFailedException if the expected value is not true.
+         */
+        public function true(): Expect {
+            if( $this->strict_comparison === true ) {
+                if( $this->negative_comparison === true ) {
+                    if( $this->expected !== false ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(false)
+                            ->strictTest()
+                            ->negativeTest()
+                            ->testType(TestFailedException::TEST_POSITIVITY);
+                    }
+                }
+                else {
+                    if( $this->expected !== true ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(false)
+                            ->strictTest()
+                            ->testType(TestFailedException::TEST_POSITIVITY);
+                    }
+                }
+            }
+            else {
+                if( $this->negative_comparison === true ) {
+                    if( $this->expected != false ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(true)
+                            ->negativeTest()
+                            ->testType(TestFailedException::TEST_POSITIVITY);
+                    }
+                }
+                else {
+                    if( $this->expected != true ) {
+                        throw (new TestFailedException)->expected($this->expected)
+                            ->actual(true)
+                            ->testType(TestFailedException::TEST_POSITIVITY);
+                    }
+                }
+            }
+
+            return $this;
+        }
     }
 ?>
