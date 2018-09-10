@@ -1,4 +1,6 @@
 <?php
+    namespace Khalyomede\Style;
+
     use Khalyomede\Style\Expect;
 
     if( function_exists('expect') === false ) {
