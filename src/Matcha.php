@@ -2,6 +2,7 @@
     namespace Khalyomede;
     
     use Khalyomede\Exception\TestFailedException;
+    use Khalyomede\ConsoleReporter;
 
     /**
      * This class deals with grouping tests and running test in batch.
@@ -61,20 +62,21 @@
          * Run each test and report the errors if there is any.
          */
         public static function run(): Matcha {
-            foreach( static::$tests as $description => $tests ) {
-                echo "$description" . PHP_EOL;
+            $reporter = new ConsoleReporter;
+            $reporter->setMaxEntries(static::$numberOfTest);
+            $reporter->doNotClearProgress();
 
+            foreach( static::$tests as $description => $tests ) {
                 foreach( $tests as $expectedBehaviorString => $callableTest ) {
                     try {
                         call_user_func($callableTest);
-
-                        echo $expectedBehaviorString;
                     }
                     catch( TestFailedException $exception ) {
-                        echo $exception->getMessage();
+                        $reporter->error($exception->getMessage());
                     }
                     finally {
-                        echo PHP_EOL;
+                        $reporter->report();
+                        $reporter->advance();
                     }
                 }
             }

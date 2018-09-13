@@ -1,6 +1,8 @@
 <?php
     require(__DIR__ . '/../vendor/autoload.php');
 
+    use function Khalyomede\Style\expect;
+
     describe('php', function() {
         describe('trim', function() {
             it('should return the same string', function() {
@@ -22,7 +24,7 @@
             });
 
             it('should return a string if the input is null', function() {
-                expect(str_shuffle(null))->toBe()->a('string');
+                expect(str_shuffle(null))->toBe()->aString();
             });
         });
 
@@ -40,4 +42,6 @@
             });
         });
     });
+
+    run();
 ?>

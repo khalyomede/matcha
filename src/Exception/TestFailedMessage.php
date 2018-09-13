@@ -43,6 +43,18 @@
             else if( $this->testType === TestType::INSTANCE_OF ) {
                 $message = "expected $actual to be an instance of $expected";
             }
+            else if( $this->testType === TestType::NULLITY ) {
+                $message = "expected $actual to be $expected";
+            }
+            else if( $this->testType === TestType::TYPE_RESOURCE ) {
+                $message = "expected $actual to be a resource";
+            }
+            else if( $this->testType === TestType::VALUE_TRUE ) {
+                $message = "expected $actual to be $expected";
+            }
+            else if( $this->testType === TestTyoe::TYPE_STRING ) {
+                $message = "expected $actual to be a string";
+            }
 
             return $message;
         }
@@ -67,6 +79,9 @@
             }
             else if( is_string($string) === true ) {
                 $string = '"' . $string . '"';
+            }
+            else if( is_null($string) === true ) {
+                $string = "null";
             }
 
             return $string;

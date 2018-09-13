@@ -4,8 +4,88 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccadc073481c12c1d4cd3deb9b98f125",
-    "packages": [],
+    "content-hash": "9b84fa958f93307ea00673f0b8a103c0",
+    "packages": [
+        {
+            "name": "khalyomede/console-reporter",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/khalyomede/console-reporter.git",
+                "reference": "44f2c823bebff3a14fa34a99de8f274067c2527a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/khalyomede/console-reporter/zipball/44f2c823bebff3a14fa34a99de8f274067c2527a",
+                "reference": "44f2c823bebff3a14fa34a99de8f274067c2527a",
+                "shasum": ""
+            },
+            "require": {
+                "localgod/console-color": "^1.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Khalyomede\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Khalyomede",
+                    "email": "khalyomede@gmail.com"
+                }
+            ],
+            "description": "Display a progress bar and logs in the same time to the console.",
+            "time": "2018-09-13T21:43:21+00:00"
+        },
+        {
+            "name": "localgod/console-color",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/localgod/console-color.git",
+                "reference": "19f97248b49f20412ed1e651458d0820c54f029a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/localgod/console-color/zipball/19f97248b49f20412ed1e651458d0820c54f029a",
+                "reference": "19f97248b49f20412ed1e651458d0820c54f029a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "behat/behat": ">3.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Localgod\\Console\\": "src/console"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Skov Frandsen",
+                    "email": "localgod@heaven.dk",
+                    "homepage": "https://github.com/localgod",
+                    "role": "Lead"
+                }
+            ],
+            "description": "Tool for working with console colors",
+            "homepage": "http://localgod.github.io/console-color/",
+            "keywords": [
+                "console color"
+            ],
+            "time": "2016-06-19T18:02:08+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",

@@ -13,13 +13,19 @@
      */
     class Expect {
         protected $testsTheEquality;
+        protected $testsTheEqualityAgainstTrue;
         protected $testsTheEqualityAgainstAValue;
         protected $testsTheEqualityAgainstAnInstance;
         protected $testsException;
         protected $testsExceptionThrown;
         protected $testsExceptionMessage;
+        protected $testsNullity;
+        protected $testsTypeResource;
+        protected $testsTypeString;
         protected $expected;
         protected $actual;
+        protected $negativeTest;
+        protected $strictTest;
 
         public function __construct($actual) {
             if( is_callable($actual) === true ) {
@@ -37,6 +43,13 @@
 
         public function toBe(): Expect {
             $this->testsTheEquality = true;
+
+            return $this;
+        }
+
+        public function true(): Expect {
+            $this->testsTheEqualityAgainstTrue = true;
+            $this->expected = true;
 
             return $this;
         }
@@ -77,6 +90,39 @@
             return $this;
         }
 
+        public function null(): Expect {
+            $this->testsNullity = true;
+            $this->expected = null;
+
+            return $this;
+        }
+
+        public function aResource(): Expect {
+            $this->testsTypeResource = true;
+            $this->expected = "resource";
+
+            return $this;
+        }
+
+        public function aString(): Expect {
+            $this->testsTypeString = true;
+            $this->expected = "";
+
+            return $this;
+        }
+
+        public function not(): Expect {
+            $this->negativeTest = true;
+
+            return $this;
+        }
+
+        public function strictly(): Expect {
+            $this->strictTest = true;
+
+            return $this;
+        }
+
         /**
          * Evaluate the order to determine if it should report an error to Matcha::if() by throwing an exception if the test failed.
          */
@@ -93,6 +139,26 @@
                 else if( $this->testsTheEqualityAgainstAnInstance === true ) {
                     if( $this->actual instanceof $this->expected === false ) {
                         throw new TestFailedException( $message->checking(TestType::INSTANCE_OF)->build() );
+                    }
+                }
+                else if( $this->testsNullity === true ) {
+                    if( is_null($this->actual) !== true ) {
+                        throw new TestFailedException( $message->checking(TestType::NULLITY)->build() );
+                    }
+                }
+                else if( $this->testsTypeResource === true ) {
+                    if( is_resource($this->actual) !== true ) {
+                        throw new TestFailedException( $message->checking(TestType::TYPE_RESOURCE)->build() );
+                    }
+                }
+                else if( $this->testsTheEqualityAgainstTrue === true ) {
+                    if( $this->expected !== $this->actual ) {
+                        throw new TestFailedException( $message->checking(TestType::VALUE_TRUE)->build() );
+                    }
+                }
+                else if( $this->testsTypeString === true ) {
+                    if( is_string($this->actual) === false ) {
+                        throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->build() );
                     }
                 }
             }
