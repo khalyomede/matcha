@@ -7,6 +7,12 @@
         protected $expected;
         protected $actual;
         protected $testType;
+        protected $negativeTest;
+        protected $strictTest;
+
+        public function __construct() {
+            $this->negativeTest = false;
+        }
 
         public function expected($value): TestFailedMessage {
             $this->expected = $value;
@@ -26,34 +32,141 @@
             return $this;
         }
 
+        public function negatively(): TestFailedMessage {
+            $this->negativeTest = true;
+
+            return $this;
+        }
+
+        public function strictly(): TestFailedMessage {
+            $this->strictTest = true;
+
+            return $this;
+        }
+
         public function build(): string {
             $expected = static::format($this->expected);
             $actual = static::format($this->actual);
             $message = "";
 
             if( $this->testType === TestType::SAME_VALUE ) {
-                $message = "expected $actual to be equal to $expected";
+                $message = "expected $actual ";
+                
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                $message .= "equal to $expected";
             }
             else if( $this->testType === TestType::SAME_EXCEPTION ) {
-                $message = "expected exception $actual to be $expected";
+                $message = "expected exception $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+                
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be $expected";
             }
             else if( $this->testType === TestType::SAME_EXCEPTION_MESSAGE ) {
-                $message = "expected exception message $actual to be $expected";
+                $message = "expected exception message $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be $expected";
             }
             else if( $this->testType === TestType::INSTANCE_OF ) {
-                $message = "expected $actual to be an instance of $expected";
+                $message = "expected $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be an instance of $expected";
             }
             else if( $this->testType === TestType::NULLITY ) {
-                $message = "expected $actual to be $expected";
+                $message = "expected $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be $expected";
             }
             else if( $this->testType === TestType::TYPE_RESOURCE ) {
-                $message = "expected $actual to be a resource";
+                $message = "expected $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be a resource";
             }
             else if( $this->testType === TestType::VALUE_TRUE ) {
-                $message = "expected $actual to be $expected";
+                $message = "expected $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be $expected";
             }
-            else if( $this->testType === TestTyoe::TYPE_STRING ) {
-                $message = "expected $actual to be a string";
+            else if( $this->testType === TestType::TYPE_STRING ) {
+                $message = "expected $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be a string";
+            }
+            else if( $this->testType === TestType::TYPE_ARRAY ) {
+                $message = "expected $actual ";
+                
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be an array";
             }
 
             return $message;

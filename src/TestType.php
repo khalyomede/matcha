@@ -10,6 +10,7 @@
         const TYPE_RESOURCE = 6;
         const VALUE_TRUE = 7;
         const TYPE_STRING = 8;
+        const TYPE_ARRAY = 9;
 
         public static function correct(int $type): bool {
             return in_array($type, static::availableTypes) === true;
@@ -24,7 +25,8 @@
                 static::NULLITY,
                 static::TYPE_RESOURCE,
                 static::VALUE_TRUE,
-                static::TYPE_STRING
+                static::TYPE_STRING,
+                static::TYPE_ARRAY
             ];
         }
     }
