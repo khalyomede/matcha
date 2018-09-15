@@ -321,5 +321,26 @@
 
             expect(function() {})->not()->toBe()->aFunction();
         }
+
+        // Displayed message
+        public function testDisplayedMessage() {
+            $this->assertInstanceOf(Expect::class, expect(function() { echo 'hello world'; })->toDisplay('hello world'));
+        }
+
+        public function testFailingDisplayedMessage() {
+            $this->expectException(TestFailedException::class);
+
+            expect(function() { echo 'hello universe'; })->toDisplay('hello world');
+        }
+
+        public function testNotDisplayedMessage() {
+            $this->assertInstanceOf(Expect::class, expect(function() { echo 'hello universe'; })->not()->toDisplay('hello world'));
+        }
+
+        public function testFailingNotDisplayedMessage() {
+            $this->expectException(TestFailedException::class);
+
+            expect(function() { echo 'hello world'; })->not()->toDisplay('hello world');
+        }
     }
 ?>
