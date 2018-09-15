@@ -11,6 +11,10 @@
             $this->assertInstanceOf(Expect::class, expect(1)->toBe()->equalTo(1));
         }
 
+        public function testEqualityStringToString() {
+            $this->assertInstanceOf(Expect::class, expect('1')->toBe()->equalTo('1'));
+        }
+
         public function testFailingEquality() {
             $this->expectException(TestFailedException::class);
 
@@ -297,7 +301,7 @@
             expect(1.1)->not()->toBe()->aDouble();
         }
 
-        // Begin a function
+        // Type function
         public function testTypeFunction() {
             $this->assertInstanceOf(Expect::class, expect(function() {})->toBe()->aFunction());
         }
