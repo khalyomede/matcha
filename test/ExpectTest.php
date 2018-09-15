@@ -296,5 +296,26 @@
 
             expect(1.1)->not()->toBe()->aDouble();
         }
+
+        // Begin a function
+        public function testTypeFunction() {
+            $this->assertInstanceOf(Expect::class, expect(function() {})->toBe()->aFunction());
+        }
+
+        public function testFailingTypeFunction() {
+            $this->expectException(TestFailedException::class);
+
+            expect(1)->toBe()->aFunction();
+        }
+
+        public function testNotTypeFunction() {
+            $this->assertInstanceOf(Expect::class, expect(1)->not()->toBe()->aFunction());
+        }
+
+        public function testFailingNotTypeFunction() {
+            $this->expectException(TestFailedException::class);
+
+            expect(function() {})->not()->toBe()->aFunction();
+        }
     }
 ?>
