@@ -22,7 +22,6 @@ Test library for PHP.
 - [Examples](#examples)
 - [Full example](#full-example)
 - [API](api)
-- [Modifiers](#modifiers)
 - [Credits](#credits)
 
 ## Installation
