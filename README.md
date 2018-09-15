@@ -2,9 +2,9 @@
 
 Test library for PHP.
 
-
-![Packagist](https://img.shields.io/packagist/v/khalyomede/matcha.svg)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/khalyomede/matcha.svg)
+![Packagist](https://img.shields.io/packagist/v/khalyomede/matcha.svg)
+![Codeship](https://img.shields.io/codeship/dc9adee0-9b4e-0136-cc78-3a6df96c6020.svg)
 ![Packagist](https://img.shields.io/packagist/l/khalyomede/matcha.svg)
 
 <div style="text-align: center;">
