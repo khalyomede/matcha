@@ -191,7 +191,7 @@
                 $message .= "to be an integer";
             }
             else if( $this->testType === TestType::TYPE_FLOAT ) {
-                $message = "expect $actual ";
+                $message = "expected $actual ";
 
                 if( $this->negativeTest === true ) {
                     $message .= "not ";
@@ -200,13 +200,22 @@
                 $message .= "to be a float";
             }
             else if( $this->testType === TestType::TYPE_DOUBLE ) {
-                $message = "expect $actual ";
+                $message = "expected $actual ";
 
                 if( $this->negativeTest === true ) {
                     $message .= "not ";
                 }
 
                 $message .= "to be a double";
+            }
+            else if( $this->testType === TestType::TYPE_FUNCTION ) {
+                $message = "expected $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be a function";
             }
  
             return $message;

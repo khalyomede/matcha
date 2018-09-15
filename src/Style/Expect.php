@@ -27,6 +27,7 @@
         protected $testsTypeInteger;
         protected $testsTypeFloat;
         protected $testsTypeDouble;
+        protected $isAFunction;
         protected $expected;
         protected $actual;
         protected $negativeTest;
@@ -34,6 +35,8 @@
 
         public function __construct($actual) {
             if( is_callable($actual) === true ) {
+                $this->isAFunction = true;
+
                 try {
                     $this->actual = call_user_func($actual);
                 }
@@ -42,6 +45,7 @@
                 }
             }
             else {
+                $this->isAFunction = false;
                 $this->actual = $actual;
             }
         }
@@ -155,6 +159,12 @@
 
         public function aDouble(): Expect {
             $this->testsTypeDouble = true;
+
+            return $this;
+        }
+
+        public function aFunction(): Expect {
+            $this->testsTypeFunction = true;
 
             return $this;
         }
@@ -343,6 +353,18 @@
                     else {
                         if( is_double($this->actual) === false ) {
                             throw new TestFailedException( $message->checking(TestType::TYPE_DOUBLE)->build() );
+                        }
+                    }
+                }
+                else if( $this->testsTypeFunction === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( $this->isAFunction === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_FUNCTION)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( $this->isAFunction === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_FUNCTION)->build() );
                         }
                     }
                 }
