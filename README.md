@@ -11,6 +11,10 @@ Test library for PHP.
     <img style="margin-left: auto; margin-right: auto;" src="https://user-images.githubusercontent.com/15908747/41511668-c68e330e-727b-11e8-89b6-c18d2d07af18.png" alt="Matcha logo" height="90px" />
 </div>
 
+<br />
+
+![Gif of an example of usage](https://image.ibb.co/ggphNK/ice_video_20180915_004002_edit_0_3.gif)
+
 ## Summary
 
 - [Installation](#installation)
