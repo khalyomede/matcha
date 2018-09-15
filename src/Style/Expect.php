@@ -27,18 +27,24 @@
         protected $testsTypeInteger;
         protected $testsTypeFloat;
         protected $testsTypeDouble;
+        protected $testsDisplaySomething;
         protected $isAFunction;
         protected $expected;
         protected $actual;
         protected $negativeTest;
         protected $strictTest;
+        protected $displayedMessage;
 
         public function __construct($actual) {
             if( is_callable($actual) === true ) {
                 $this->isAFunction = true;
 
                 try {
+                    ob_start();
+
                     $this->actual = call_user_func($actual);
+
+                    $this->displayedMessage = ob_get_clean();
                 }
                 catch( Throwable $exception ) {
                     $this->actual = $exception;
@@ -165,6 +171,14 @@
 
         public function aFunction(): Expect {
             $this->testsTypeFunction = true;
+
+            return $this;
+        }
+
+        public function toDisplay(string $message): Expect {
+            $this->testsDisplaySomething = true;
+            $this->expected = $message;
+            $this->actual = $this->displayedMessage;
 
             return $this;
         }
@@ -395,6 +409,18 @@
                     }
                 }
             } 
+            else if( $this->testsDisplaySomething === true ) {
+                if( $this->negativeTest === true ) {
+                    if( $this->actual == $this->expected ) {
+                        throw new TestFailedException( $message->checking(TestType::DISPLAYED_MESSAGE)->negatively()->build() );
+                    }
+                }
+                else {
+                    if( $this->actual != $this->expected ) {
+                        throw new TestFailedException( $message->checking(TestType::DISPLAYED_MESSAGE)->build() );
+                    }
+                }
+            }
         }
     }
 ?>

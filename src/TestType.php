@@ -16,6 +16,7 @@
         const TYPE_FLOAT = 12;
         const TYPE_DOUBLE = 13;
         const TYPE_FUNCTION = 14;
+        const DISPLAYED_MESSAGE = 15;
 
         public static function correct(int $type): bool {
             return in_array($type, static::availableTypes) === true;
@@ -36,7 +37,8 @@
                 static::TYPE_INTEGER,
                 static::TYPE_FLOAT,
                 static::TYPE_DOUBLE,
-                static::TYPE_FUNCTION
+                static::TYPE_FUNCTION,
+                static::DISPLAYED_MESSAGE
             ];
         }
     }
