@@ -33,7 +33,57 @@ composer require --dev khalyomede\matcha:0.*
 
 ## Examples
 
+- [Example 1: testing if a code returns a string](#example-1-testing-if-a-code-returns-a-string)
+- [Example 2: testing if a value is true](#example-2-testing-if-a-code-returns-true)
+- [Example 3: testing if a code returns null](#example-3-testing-if-a-code-returns-null)
 
+### Example 1: testing if a code returns a string
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('trim', function() {
+  it('should return the same string if the string has no spaces around', function() {
+    expect( trim('hello world') )->toBe()->equalTo('hello world');
+  });
+});
+
+run();
+```
+
+### Example 2: testing if a value is true
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('empty', function() {
+  it('should return true if the string has no characters', function() {
+    expect( empty('') )->toBe()->true();
+  });
+});
+
+run();
+```
+
+### Example 3: testing if a code returns false
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('isset', function() {
+  it('should return false if the variable does not exists', function() {
+    expect( isset($GLOBALS['php6']) )->toBe()->false();
+  });
+});
+
+run();
+```
 
 ## Full example
 
