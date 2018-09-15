@@ -11,6 +11,10 @@
         const VALUE_TRUE = 7;
         const TYPE_STRING = 8;
         const TYPE_ARRAY = 9;
+        const VALUE_FALSE = 10;
+        const TYPE_INTEGER = 11;
+        const TYPE_FLOAT = 12;
+        const TYPE_DOUBLE = 13;
 
         public static function correct(int $type): bool {
             return in_array($type, static::availableTypes) === true;
@@ -26,7 +30,11 @@
                 static::TYPE_RESOURCE,
                 static::VALUE_TRUE,
                 static::TYPE_STRING,
-                static::TYPE_ARRAY
+                static::TYPE_ARRAY,
+                static::VALUE_FALSE,
+                static::TYPE_INTEGER,
+                static::TYPE_FLOAT,
+                static::TYPE_DOUBLE
             ];
         }
     }

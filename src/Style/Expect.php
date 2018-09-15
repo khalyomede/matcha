@@ -14,6 +14,7 @@
     class Expect {
         protected $testsTheEquality;
         protected $testsTheEqualityAgainstTrue;
+        protected $testsTheEqualityAgainstFalse;
         protected $testsTheEqualityAgainstAValue;
         protected $testsTheEqualityAgainstAnInstance;
         protected $testsException;
@@ -23,6 +24,9 @@
         protected $testsTypeResource;
         protected $testsTypeString;
         protected $testsTypeArray;
+        protected $testsTypeInteger;
+        protected $testsTypeFloat;
+        protected $testsTypeDouble;
         protected $expected;
         protected $actual;
         protected $negativeTest;
@@ -51,6 +55,13 @@
         public function true(): Expect {
             $this->testsTheEqualityAgainstTrue = true;
             $this->expected = true;
+
+            return $this;
+        }
+
+        public function false(): Expect {
+            $this->testsTheEqualityAgainstFalse = true;
+            $this->expected = false;
 
             return $this;
         }
@@ -112,6 +123,12 @@
             return $this;
         }
 
+        public function anInteger(): Expect {
+            $this->testsTypeInteger = true;
+            
+            return $this;
+        }
+
         public function not(): Expect {
             $this->negativeTest = true;
 
@@ -126,6 +143,18 @@
 
         public function anArray(): Expect {
             $this->testsTypeArray = true;
+
+            return $this;
+        }
+
+        public function aFloat(): Expect {
+            $this->testsTypeFloat = true;
+
+            return $this;
+        }
+
+        public function aDouble(): Expect {
+            $this->testsTypeDouble = true;
 
             return $this;
         }
@@ -152,8 +181,15 @@
                         }
                     }
                     else {
-                        if( $this->expected != $this->actual ) {
-                            throw new TestFailedException( $message->checking(TestType::SAME_VALUE)->build() );
+                        if( $this->strictTest === true ) {
+                            if( $this->expected !== $this->actual ) {
+                                throw new TestFailedException( $message->checking(TestType::SAME_VALUE)->strictly()->build() );
+                            }
+                        }
+                        else {
+                            if( $this->expected != $this->actual ) {
+                                throw new TestFailedException( $message->checking(TestType::SAME_VALUE)->build() );
+                            }
                         }
                     }
                 }
@@ -206,7 +242,7 @@
                             }
                         }
                         else {
-                            if( $this->expected == true ) {
+                            if( $this->expected == $this->actual ) {
                                 throw new TestFailedException( $message->checking(TestType::VALUE_TRUE)->negatively()->build() );
                             }
                         }
@@ -224,51 +260,89 @@
                         }
                     }
                 }
-                else if( $this->testsTypeString === true ) {
+                else if( $this->testsTheEqualityAgainstFalse === true ) {
                     if( $this->negativeTest === true ) {
                         if( $this->strictTest === true ) {
-                            if( is_string($this->actual) === true ) {
-                                throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->strictly()->negatively()->build() );
+                            if( $this->expected === $this->actual ) {
+                                throw new TestFailedException( $message->checking(TestType::VALUE_FALSE)->negatively()->strictly()->build() );
                             }
                         }
                         else {
-                            if( is_string($this->actual) == true ) {
-                                throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->negatively()->build() );
+                            if( $this->expected == $this->actual ) {
+                                throw new TestFailedException( $message->checking(TestType::VALUE_FALSE)->negatively()->build() );
                             }
                         }
                     }
                     else {
                         if( $this->strictTest === true ) {
-                            if( is_string($this->actual) === false ) {
-                                throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->strictly()->build() );
+                            if( $this->expected !== $this->actual ) {
+                                throw new TestFailedException( $message->checking(TestType::VALUE_FALSE)->strictly()->build() );
                             }
                         }
                         else {
-                            if( is_string($this->actual) == false ) {
-                                throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->build() );
+                            if( $this->expected != $this->actual ) {
+                                throw new TestFailedException( $message->checking(TestType::VALUE_FALSE)->build() );
                             }
+                        }
+                    }
+                }
+                else if( $this->testsTypeString === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( is_string($this->actual) === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( is_string($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->build() );
                         }
                     }
                 }
                 else if( $this->testsTypeArray === true ) {
                     if( $this->negativeTest === true ) {
-                        if( $this->strictTest === true ) {
-                            throw new TestFailedException( $message->checking(TestType::TYPE_ARRAY)->strictly()->strictly()->build() );
-                        }
-                        else {
+                        if( is_array($this->actual) === true ) {
                             throw new TestFailedException( $message->checking(TestType::TYPE_ARRAY)->negatively()->build() );
                         }
                     }
                     else {
-                        if( $this->strictTest === true ) {
-                            if( is_array($this->actual) === false ) {
-                                throw new TestFailedException( $message->checking(TestType::TYPE_ARRAY)->strictly()->build() );
-                            }
+                        if( is_array($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_ARRAY)->build() );
                         }
-                        else {
-                            if( is_array($this->actual) == false ) {
-                                throw new TestFailedException( $message->checking(TestType::TYPE_ARRAY)->build() );
-                            }
+                    }
+                }
+                else if( $this->testsTypeInteger === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( is_int($this->actual) === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_INTEGER)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( is_int($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_INTEGER)->build() );
+                        }
+                    }
+                }
+                else if( $this->testsTypeFloat === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( is_float($this->actual) === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_FLOAT)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( is_float($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_FLOAT)->build() );
+                        }
+                    }
+                }
+                else if( $this->testsTypeDouble === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( is_double($this->actual) === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_DOUBLE)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( is_double($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_DOUBLE)->build() );
                         }
                     }
                 }

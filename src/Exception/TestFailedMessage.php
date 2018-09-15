@@ -168,7 +168,47 @@
 
                 $message .= "to be an array";
             }
+            else if( $this->testType === TestType::VALUE_FALSE ) {
+                $message = "expected $actual ";
 
+                if( $this->strictTest === true ) {
+                    $message .= "strictly ";
+                }
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be false";
+            }
+            else if( $this->testType === TestType::TYPE_INTEGER ) {
+                $message = "expected $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be an integer";
+            }
+            else if( $this->testType === TestType::TYPE_FLOAT ) {
+                $message = "expect $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be a float";
+            }
+            else if( $this->testType === TestType::TYPE_DOUBLE ) {
+                $message = "expect $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be a double";
+            }
+ 
             return $message;
         }
 
