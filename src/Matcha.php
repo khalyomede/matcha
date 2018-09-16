@@ -91,6 +91,8 @@
             $reporter->doNotClearProgress();
 
             foreach( static::$tests as $description => $tests ) {
+                $reporter->info($description);
+
                 foreach( $tests as $expectedBehaviorString => $callableTest ) {
                     try {
                         call_user_func($callableTest);
