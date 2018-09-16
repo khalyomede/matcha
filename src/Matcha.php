@@ -91,7 +91,7 @@
             $reporter->doNotClearProgress();
 
             foreach( static::$tests as $description => $tests ) {
-                $reporter->info($description);
+                $reporter->info("Running tests for \"$description\"");
 
                 foreach( $tests as $expectedBehaviorString => $callableTest ) {
                     try {
