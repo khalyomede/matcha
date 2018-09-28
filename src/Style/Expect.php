@@ -172,6 +172,13 @@
             return $this;
         }
 
+        /**
+         * Asserts that we expect the test 
+         * to be also type-tested (this will 
+         * prevent from PHP to perform 
+         * implicit cast when running the 
+         * test).
+         */
         public function strictly(): Expect {
             $this->strictTest = true;
 

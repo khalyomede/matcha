@@ -217,6 +217,38 @@ Asserts that we expect the inverse of the test.
 public function not(): Expect
 ```
 
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('empty', function() {
+  it('should not return true if the string is not empty', function() {
+    expect( empty('hello world') )->not()->toBe()->true();
+  });
+});
+```
+
+### Strictly
+
+Asserts that we expect the test to be also type-tested (this will prevent from PHP to perform implicit cast when running the test).
+
+```php
+public function strictly(): Expect
+```
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('int cast', function() {
+  it('should return the integer equivalent of the string representation of a number', function() {
+    expect((int) '1')->toBe()->strictly()->equalTo(1);
+  });
+});
+```
+
 ## Credits
 
 - Logo by [Made](https://thenounproject.com/made.somewhere/) from [Noun project](https://thenounproject.com/) (modified version of logo is currenctly used, check out the [original version](https://thenounproject.com/term/green-tea/952777/))
