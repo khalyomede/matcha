@@ -28,6 +28,9 @@
     use Khalyomede\Style\Expect;
 
     if( function_exists('expect') === false ) {
+        /**
+         * Returns a new Expect instance.
+         */
         function expect($mixed): Expect {
             return new Expect($mixed);
         }

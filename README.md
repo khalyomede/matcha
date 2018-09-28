@@ -179,6 +179,35 @@ run();
   - [`toThrow`](#toThrow)
     - [`theException`](#theException)
     - [`theMessage`](#theMessage)
+- [`run`](#run)
+- [`describe`](#describe)
+- [`it`](#it)
+
+### Expect
+
+Returns a new Expect instance.
+
+```php
+function expect($mixed): Expect
+```
+
+```php
+require(__DIR__  '/../vendor/autoload.php');
+
+use function Khalyomede\Expect;
+
+expect( empty('hello world') );
+```
+
+```php
+require(__DIR__  '/../vendor/autoload.php');
+
+use function Khalyomede\Expect;
+
+expect(function() {
+  throw new Exception('exception manually thrown');
+});
+```
 
 ## Credits
 
