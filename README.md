@@ -276,6 +276,28 @@ describe('trim', function() {
 run();
 ```
 
+### equalTo
+
+Asserts that we are testing an equality against a particular value.
+
+```php
+public function equalTo($mixed): Expect
+```
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('implicit cast', function() {
+  it('should implicitly cast the string representation of a number', function() {
+    expect('1')->toBe()->equalTo(1)
+  });
+});
+
+run();
+```
+
 ## Credits
 
 - Logo by [Made](https://thenounproject.com/made.somewhere/) from [Noun project](https://thenounproject.com/) (modified version of logo is currenctly used, check out the [original version](https://thenounproject.com/term/green-tea/952777/))

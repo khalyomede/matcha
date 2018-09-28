@@ -126,6 +126,10 @@
             return $this;
         }
 
+        /**
+         * Asserts that we are testing an equality 
+         * against a particular value.
+         */
         public function equalTo($expected): Expect {
             $this->testsTheEqualityAgainstAValue = true;
             $this->expected = $expected;
