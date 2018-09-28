@@ -209,6 +209,14 @@ expect(function() {
 });
 ```
 
+### Not
+
+Asserts that we expect the inverse of the test.
+
+```php
+public function not(): Expect
+```
+
 ## Credits
 
 - Logo by [Made](https://thenounproject.com/made.somewhere/) from [Noun project](https://thenounproject.com/) (modified version of logo is currenctly used, check out the [original version](https://thenounproject.com/term/green-tea/952777/))

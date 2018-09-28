@@ -163,6 +163,9 @@
             return $this;
         }
 
+        /**
+         * Asserts that we expect the inverse of the test.
+         */
         public function not(): Expect {
             $this->negativeTest = true;
 
