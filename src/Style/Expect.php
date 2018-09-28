@@ -80,6 +80,10 @@
             }
         }
 
+        /**
+         * Asserts that we are testing 
+         * an equality.
+         */
         public function toBe(): Expect {
             $this->testsTheEquality = true;
 

@@ -158,32 +158,33 @@ run();
 
 ## API
 
-- [`expect`](#expect)
-  - [`not`](#not)
-  - [`strictly`](#strictly)
-  - [`toBe`](#tobe)
-    - [`equalTo`](#equalto)
-      - [`null`](#null)
-      - [`true`](#true)
-      - [`false`](#false)
-    - [`anInstanceOf`](#anInstanceOf)
-    - [`anInteger`](#anInteger)
-    - [`aFloat`](#aFloat)
-    - [`aDouble`](#aDouble)
-    - [`aString`](#aString)
-    - [`anArray`](#anArray)
-    - [`aResource`](#aResource)
-    - [`aFunction`](#aFunction)
+- [expect](#expect)
+  - [not](#not)
+  - [strictly](#strictly)
+  - [toBe](#tobe)
+    - [equalTo](#equalto)
+      - [null](#null)
+      - [true](#true)
+      - [false](#false)
+    - [anInstanceOf](#anInstanceOf)
+    - [anInteger](#anInteger)
+    - [aFloat](#aFloat)
+    - [aDouble](#aDouble)
+    - [aString](#aString)
+    - [anArray](#anArray)
+    - [aResource](#aResource)
+    - [aFunction](#aFunction)
     - aBoolean
     - anObject
-  - [`toThrow`](#toThrow)
-    - [`theException`](#theException)
-    - [`theMessage`](#theMessage)
-- [`run`](#run)
-- [`describe`](#describe)
-- [`it`](#it)
+  - [toThrow](#toThrow)
+    - [theException](#theException)
+    - [theMessage](#theMessage)
+  - [toDisplay](#toDisplay)
+- [run](#run)
+- [describe](#describe)
+- [it](#it)
 
-### Expect
+### expect
 
 Returns a new Expect instance.
 
@@ -209,7 +210,7 @@ expect(function() {
 });
 ```
 
-### Not
+### not
 
 Asserts that we expect the inverse of the test.
 
@@ -229,7 +230,7 @@ describe('empty', function() {
 });
 ```
 
-### Strictly
+### strictly
 
 Asserts that we expect the test to be also type-tested (this will prevent from PHP to perform implicit cast when running the test).
 
@@ -247,6 +248,28 @@ describe('int cast', function() {
     expect((int) '1')->toBe()->strictly()->equalTo(1);
   });
 });
+```
+
+### toBe
+
+Asserts that we are testing an equality.
+
+```php
+public function toBe(): Expect
+```
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('trim', function() {
+  it('should return the same string if it has no spaces around', function() {
+    expect( trim('hello world') )->toBe()->equalTo('hello world');
+  });
+});
+
+run();
 ```
 
 ## Credits
