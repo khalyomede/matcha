@@ -228,6 +228,8 @@ describe('empty', function() {
     expect( empty('hello world') )->not()->toBe()->true();
   });
 });
+
+run();
 ```
 
 ### strictly
@@ -248,6 +250,8 @@ describe('int cast', function() {
     expect((int) '1')->toBe()->strictly()->equalTo(1);
   });
 });
+
+run();
 ```
 
 ### toBe
