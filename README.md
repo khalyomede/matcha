@@ -109,64 +109,51 @@ This example is intended to show you how can all of these function can be mixed 
 ```php
 require(__DIR__ . '/../vendor/autoload.php');
 
-describe('php', function() {
-  describe('trim', function() {
-    it('should return the same string', function() {
-      $input = 'hello world';
-      
-      expect(trim($input))->toBe()->equalTo($input);
-    });
+use function Khalyomede\Style\expect;
 
-    it('should trim multiple spaces around', function() {
-      expect(trim('  hello world '))->toBe()->equalTo('hello world');
-    });
+describe('trim', function() {
+  it('should return a string when triming a string', function() {
+    expect(trim('hello world'))->toBe()->aString();
   });
 
-  describe('str_shuffle', function() {
-    it('should not return the same string', function() {
-      $input = 'hello world';
-
-      expect(str_shuffle($input))->not()->toBe()->equalTo($input);
-    });
-
-    it('should return a string if the input is null', function() {
-      expect(str_shuffle(null))->toBe()->a('string');
-    });
+  it('should return a string even if triming null', function() {
+    expect(trim(null))->toBe()->aString();
   });
 
-  describe('round', function() {
-    it('should strictly return the rounded number', function() {
-      expect(round(42.5))->toBe()->strictly()->equalTo(43.0); // round returns a float and not an integer
-    });
+  it('should return the same string when triming a string without spaces around', function() {
+    expect(trim('hello world'))->toBe()->equalTo('hello world');
   });
 
-  describe('PDO', function() {
-    it('should throw an exception if the database information are invalid', function() {
-      expect(function() {
-        $pdo = new PDO('mysql:host=unknown;dbname=whatever;charset=CP51', 'me', '123supersecure');
-      })->strictly()->toThrow('PDOException');
-    });
+  it('should return the string without spaces around if triming a string with spaces around', function() {
+    expect(trim(' hello world '))->toBe()->equalTo('hello world');
   });
 });
-```
 
-Running this script will display:
+describe('empty', function() {
+  it('should return true if checking null', function() {
+    expect(empty(null))->toBe()->strictly()->true();
+  });
 
-```bash
-$ php example/full-example.php
- php
-  trim
-    ✔ should return the same string
-    ✔ should trim multiple spaces around
-  str_shuffle
-    ✔ should not return the same string
-    ✔ should return a string if the input is null
-  round
-    ✔ should strictly return the rounded number
-  PDO
-    ✔ should throw an exception if the database information are invalid
+  it('should return true if checking false', function() {
+    expect(empty(false))->toBe()->true();
+  });
 
- 6 passing (86ms)
+  it('should return true if checking an empty array', function() {
+    expect(empty([]))->toBe()->true();
+  });
+});
+
+describe('isset', function() {
+  it('should return false if a variable is not set', function() {
+    expect(isset($php6))->toBe()->false();
+  });
+
+  it('should return true if an array is set', function() {
+    expect(isset($_GET))->toBe()->true();
+  });
+});
+
+run();
 ```
 
 ## API

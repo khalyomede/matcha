@@ -23,7 +23,7 @@
 
     describe('empty', function() {
         it('should return true if checking null', function() {
-            expect(empty(null))->toBe()->true();
+            expect(empty(null))->toBe()->strictly()->true();
         });
 
         it('should return true if checking false', function() {
