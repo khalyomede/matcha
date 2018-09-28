@@ -158,31 +158,31 @@ run();
 
 ## API
 
+- [describe](#describe)
 - [expect](#expect)
   - [not](#not)
   - [strictly](#strictly)
   - [toBe](#tobe)
-    - [equalTo](#equalto)
-      - [null](#null)
-      - [true](#true)
-      - [false](#false)
+    - aBoolean
+    - [aDouble](#aDouble)
+    - [aFloat](#aFloat)
+    - [aFunction](#aFunction)
+    - [anArray](#anArray)
+    - anObject
     - [anInstanceOf](#anInstanceOf)
     - [anInteger](#anInteger)
-    - [aFloat](#aFloat)
-    - [aDouble](#aDouble)
-    - [aString](#aString)
-    - [anArray](#anArray)
     - [aResource](#aResource)
-    - [aFunction](#aFunction)
-    - aBoolean
-    - anObject
+    - [aString](#aString)
+    - [equalTo](#equalto)
+      - [false](#false)
+      - [null](#null)
+      - [true](#true)
+  - [toDisplay](#toDisplay)
   - [toThrow](#toThrow)
     - [theException](#theException)
     - [theMessage](#theMessage)
-  - [toDisplay](#toDisplay)
-- [run](#run)
-- [describe](#describe)
 - [it](#it)
+- [run](#run)
 
 ### expect
 
