@@ -1,6 +1,6 @@
 # Matcha
 
-Test library for PHP.
+Unit test library that taste good.
 
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/khalyomede/matcha.svg)
 ![Packagist](https://img.shields.io/packagist/v/khalyomede/matcha.svg)
