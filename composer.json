@@ -1,8 +1,14 @@
 {
 	"name": "khalyomede/matcha",
-	"description": "Test tool for PHP",
+	"description": "Unit test library that taste good.",
 	"type": "library",
 	"license": "MIT",
+	"keywords": [
+		"unit",
+		"test",
+		"testing",
+		"tool"
+	],
 	"authors": [
 		{
 			"name": "khalyomede",
