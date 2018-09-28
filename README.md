@@ -158,18 +158,27 @@ run();
 
 ## API
 
-- [`expect()`](#expect)
+- [`expect`](#expect)
   - [`not`](#not)
   - [`strictly`](#strictly)
   - [`toBe`](#tobe)
+    - [`equalTo`](#equalto)
+      - [`null`](#null)
+      - [`true`](#true)
+      - [`false`](#false)
+    - [`anInstanceOf`](#anInstanceOf)
+    - [`anInteger`](#anInteger)
+    - [`aFloat`](#aFloat)
+    - [`aDouble`](#aDouble)
+    - [`aString`](#aString)
+    - [`anArray`](#anArray)
+    - [`aResource`](#aResource)
+    - [`aFunction`](#aFunction)
+    - aBoolean
+    - anObject
   - [`toThrow`](#toThrow)
-  - [`a`](#a)
-  - [`an`](#an)
-  - [`anInstanceOf`](#aninstanceof)
-  - [`equalTo`](#equalto)
-  - [`null`](#null)
-  - [`true`](#true)
-  - [`false`](#false)
+    - [`theException`](#theException)
+    - [`theMessage`](#theMessage)
 
 ## Credits
 
