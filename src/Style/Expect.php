@@ -51,6 +51,7 @@
         protected $testsTypeInteger;
         protected $testsTypeFloat;
         protected $testsTypeDouble;
+        protected $testsTypeBoolean;
         protected $testsDisplaySomething;
         protected $isAFunction;
         protected $expected;
@@ -221,6 +222,15 @@
             $this->testsDisplaySomething = true;
             $this->expected = $message;
             $this->actual = $this->displayedMessage;
+
+            return $this;
+        }
+
+        /**
+         * @return Khalyomede\Style\Expect
+         */
+        public function aBoolean(): Expect {
+            $this->testsTypeBoolean = true;
 
             return $this;
         }
@@ -421,6 +431,18 @@
                     else {
                         if( $this->isAFunction === false ) {
                             throw new TestFailedException( $message->checking(TestType::TYPE_FUNCTION)->build() );
+                        }
+                    }
+                }
+                else if( $this->testsTypeBoolean === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( is_bool($this->actual) === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_BOOLEAN)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( is_bool($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_BOOLEAN)->build() );
                         }
                     }
                 }
