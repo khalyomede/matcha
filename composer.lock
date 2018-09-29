@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7a73f10d22b31488f462e8cb48898c8",
+    "content-hash": "8768cfd0948e2345da77e83558450086",
     "packages": [
         {
             "name": "khalyomede/console-reporter",
