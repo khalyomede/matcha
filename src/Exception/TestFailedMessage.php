@@ -33,9 +33,13 @@
         protected $testType;
         protected $negativeTest;
         protected $strictTest;
+        protected $detail;
+        protected $hasDetail;
 
         public function __construct() {
             $this->negativeTest = false;
+            $this->detail = '';
+            $this->hasDetail = false;
         }
 
         public function expected($value): TestFailedMessage {
@@ -64,6 +68,17 @@
 
         public function strictly(): TestFailedMessage {
             $this->strictTest = true;
+
+            return $this;
+        }
+
+        /**
+         * Let the message to be filled 
+         * with details when needed.
+         */
+        public function withDetail(string $detail) {
+            $this->hasDetail = true;
+            $this->detail = $detail;
 
             return $this;
         }
@@ -269,6 +284,19 @@
                 }
 
                 $message = "to be an object";
+            }
+            else if( $this->testType === TestType::FORMAT_JSON ) {
+                $message = "expected $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be in JSON format";
+
+                if( $this->hasDetail === true ) {
+                    $message .= " (detail: {$this->detail}).";
+                }
             }
  
             return $message;
