@@ -39,6 +39,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 4: testing the negativity of an expression](#example-4-testing-the-negativity-of-an-expression)
 - [Example 5: testing if a message has been displayed](#example-5-testing-if-a-message-has-been-displayed)
 - [Example 6: testing if a variable returns the desired type](example-6-testing-if-a-variable-returns-the-desired-type)
+- [Example 7: testing against a string format](#example-7-testing-against-a-string-format)
 
 ### Example 1: testing if a code returns a string
 
@@ -132,6 +133,22 @@ use function Khalyomede\Style\expect;
 describe('empty', function() {
   it('it should return true if an array is empty', function() {
     expect( empty([]) )->toBe()->aBoolean();
+  });
+});
+
+run();
+```
+
+### Example 7: testing against a string format
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('json', function() {
+  it('should be a valid json string', function() {
+    expect('{"hello": "world"}')->toBe()->aString()->inJsonFormat();
   });
 });
 
