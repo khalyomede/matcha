@@ -252,6 +252,15 @@
 
                 $message .= "to be $expected in $target";
             }
+            else if( $this->testType === TestType::TYPE_BOOLEAN ) {
+                $message = "expected $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message = "to be a boolean";
+            }
  
             return $message;
         }
