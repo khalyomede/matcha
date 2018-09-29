@@ -199,7 +199,7 @@ run();
   - [not](#not)
   - [strictly](#strictly)
   - [toBe](#tobe)
-    - aBoolean
+    - [aBoolean](#aBoolean)
     - [aDouble](#aDouble)
     - [aFloat](#aFloat)
     - [aFunction](#aFunction)
