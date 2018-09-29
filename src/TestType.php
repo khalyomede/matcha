@@ -41,6 +41,7 @@
         const TYPE_DOUBLE = 13;
         const TYPE_FUNCTION = 14;
         const DISPLAYED_MESSAGE = 15;
+        const TYPE_BOOLEAN = 16;
 
         public static function correct(int $type): bool {
             return in_array($type, static::availableTypes) === true;
@@ -62,7 +63,8 @@
                 static::TYPE_FLOAT,
                 static::TYPE_DOUBLE,
                 static::TYPE_FUNCTION,
-                static::DISPLAYED_MESSAGE
+                static::DISPLAYED_MESSAGE,
+                static::TYPE_BOOLEAN
             ];
         }
     }
