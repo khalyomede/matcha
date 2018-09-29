@@ -204,7 +204,7 @@ run();
     - [aFloat](#aFloat)
     - [aFunction](#aFunction)
     - [anArray](#anArray)
-    - anObject
+    - [anObject](#anObject)
     - [anInstanceOf](#anInstanceOf)
     - [anInteger](#anInteger)
     - [aResource](#aResource)
