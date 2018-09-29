@@ -244,13 +244,13 @@
             else if( $this->testType === TestType::DISPLAYED_MESSAGE ) {
                 $target = php_sapi_name() === 'cli' ? 'console' : 'web page';
 
-                $messge = "expected $actual ";
+                $message = "expected displayed message $actual ";
 
                 if( $this->negativeTest === true ) {
                     $message .= "not ";
                 }
 
-                $message .= "to display $expected in $target";
+                $message .= "to be $expected in $target";
             }
  
             return $message;
