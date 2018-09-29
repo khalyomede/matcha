@@ -20,7 +20,7 @@ Unit test library that taste good.
 - [Installation](#installation)
 - [Examples](#examples)
 - [Full example](#full-example)
-- [API](api)
+- [API](#api)
 - [Credits](#credits)
 
 ## Installation
