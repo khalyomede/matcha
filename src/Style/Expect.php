@@ -389,12 +389,12 @@
                     if( $this->testsFormatJson === true ) {
                         if( $this->negativeTest === true ) {
                             if( $this->isInJsonFormat === true ) {
-                                throw new TestFailedException( $message->checking(TestType::FORMAT_JSON)->negatively()->build() );
+                                throw new TestFailedException( $message->checking(TestType::FORMAT_JSON)->negatively()->withDetail(json_last_error_msg())->build() );
                             }
                         }
                         else {
                             if( $this->isInJsonFormat === false ) {
-                                throw new TestFailedException( $message->checking(TestType::FORMAT_JSON)->build() );
+                                throw new TestFailedException( $message->checking(TestType::FORMAT_JSON)->withDetail(json_last_error_msg())->build() );
                             }
                         }
                     }
