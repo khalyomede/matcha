@@ -43,6 +43,7 @@
         const DISPLAYED_MESSAGE = 15;
         const TYPE_BOOLEAN = 16;
         const TYPE_OBJECT = 17;
+        const FORMAT_JSON = 18;
 
         public static function correct(int $type): bool {
             return in_array($type, static::availableTypes) === true;
@@ -66,7 +67,8 @@
                 static::TYPE_FUNCTION,
                 static::DISPLAYED_MESSAGE,
                 static::TYPE_BOOLEAN,
-                static::TYPE_OBJECT
+                static::TYPE_OBJECT,
+                static::FORMAT_JSON
             ];
         }
     }
