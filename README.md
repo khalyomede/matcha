@@ -38,6 +38,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 3: testing if a code returns null](#example-3-testing-if-a-code-returns-null)
 - [Example 4: testing the negativity of an expression](#example-4-testing-the-negativity-of-an-expression)
 - [Example 5: testing if a message has been displayed](#example-5-testing-if-a-message-has-been-displayed)
+- [Example 6: testing if a variable returns the desired type](example-6-testing-if-a-variable-returns-the-desired-type)
 
 ### Example 1: testing if a code returns a string
 
@@ -115,6 +116,22 @@ describe('echo', function() {
     expect(function() {
       echo 'hello world';
     })->toDisplay('hello world');
+  });
+});
+
+run();
+```
+
+### Example 6: testing if a variable returns the desired type
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('empty', function() {
+  it('it should return true if an array is empty', function() {
+    expect( empty([]) )->toBe()->aBoolean();
   });
 });
 
