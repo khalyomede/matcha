@@ -37,6 +37,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 2: testing if a value is true](#example-2-testing-if-a-code-returns-true)
 - [Example 3: testing if a code returns null](#example-3-testing-if-a-code-returns-null)
 - [Example 4: testing the negativity of an expression](#example-4-testing-the-negativity-of-an-expression)
+- [Example 5: testing if a message has been displayed](#example-5-testing-if-a-message-has-been-displayed)
 
 ### Example 1: testing if a code returns a string
 
@@ -96,6 +97,24 @@ use function Khalyomede\Style\expect;
 describe('array-sum', function() {
   it('should not return null', function() {
     expect( array_sum([1, 2, 3]) )->not()->toBe()->null();
+  });
+});
+
+run();
+```
+
+### Example 5: testing if a message has been displayed
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('echo', function() {
+  it('it should display the correct message', function() {
+    expect(function() {
+      echo 'hello world';
+    })->toDisplay('hello world');
   });
 });
 
