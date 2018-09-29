@@ -52,6 +52,7 @@
         protected $testsTypeFloat;
         protected $testsTypeDouble;
         protected $testsTypeBoolean;
+        protected $testsTypeFunction;
         protected $testsDisplaySomething;
         protected $isAFunction;
         protected $expected;
