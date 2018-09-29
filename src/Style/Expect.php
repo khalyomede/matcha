@@ -55,7 +55,9 @@
         protected $testsTypeFunction;
         protected $testsTypeObject;
         protected $testsDisplaySomething;
+        protected $testsFormatJson;
         protected $isAFunction;
+        protected $isInJsonFormat;
         protected $expected;
         protected $actual;
         protected $negativeTest;
@@ -165,6 +167,16 @@
             $this->testsTypeString = true;
             $this->expected = "";
 
+            return $this;
+        }
+
+        public function inJsonFormat(): Expect {
+            $this->testsFormatJson = true;
+            
+            json_decode((string) $this->actual);
+
+            $this->isInJsonFormat = json_last_error() === JSON_ERROR_NONE;
+            
             return $this;
         }
 
@@ -374,14 +386,28 @@
                     }
                 }
                 else if( $this->testsTypeString === true ) {
-                    if( $this->negativeTest === true ) {
-                        if( is_string($this->actual) === true ) {
-                            throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->negatively()->build() );
+                    if( $this->testsFormatJson === true ) {
+                        if( $this->negativeTest === true ) {
+                            if( $this->isInJsonFormat === true ) {
+                                throw new TestFailedException( $message->checking(TestType::FORMAT_JSON)->negatively()->build() );
+                            }
+                        }
+                        else {
+                            if( $this->isInJsonFormat === false ) {
+                                throw new TestFailedException( $message->checking(TestType::FORMAT_JSON)->build() );
+                            }
                         }
                     }
                     else {
-                        if( is_string($this->actual) === false ) {
-                            throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->build() );
+                        if( $this->negativeTest === true ) {
+                            if( is_string($this->actual) === true ) {
+                                throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->negatively()->build() );
+                            }
+                        }
+                        else {
+                            if( is_string($this->actual) === false ) {
+                                throw new TestFailedException( $message->checking(TestType::TYPE_STRING)->build() );
+                            }
                         }
                     }
                 }
