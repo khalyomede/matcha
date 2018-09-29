@@ -261,6 +261,15 @@
 
                 $message = "to be a boolean";
             }
+            else if( $this->testType === TestType::TYPE_OBJECT ) {
+                $message = "expected $actual ";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message = "to be an object";
+            }
  
             return $message;
         }
