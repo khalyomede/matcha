@@ -363,5 +363,26 @@
 
             expect(true)->not()->toBe()->aBoolean();
         }
+
+        // Type object
+        public function testTypeObject() {
+            $this->assertInstanceOf(Expect::class, expect(new StdClass)->toBe()->anObject());
+        }
+
+        public function testFailingTypeObject() {
+            $this->expectException(TestFailedException::class);
+
+            expect('hello world')->toBe()->anObject();
+        }
+
+        public function testNotTypeObject() {
+            $this->assertInstanceOf(Expect::class, expect('hello world')->not()->toBe()->anObject());
+        }
+
+        public function testFailingNotTypeObject() {
+            $this->expectException(TestFailedException::class);
+
+            expect(new StdClass)->not()->toBe()->anObject();
+        }
     }
 ?>
