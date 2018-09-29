@@ -342,5 +342,26 @@
 
             expect(function() { echo 'hello world'; })->not()->toDisplay('hello world');
         }
+
+        // Type boolean
+        public function testTypeBoolean() {
+            $this->assertInstanceOf(Expect::class, expect(true)->toBe()->aBoolean());
+        }
+
+        public function testFailingTypeBoolean() {
+            $this->expectException(TestFailedException::class);
+
+            expect('hello world')->toBe()->aBoolean();
+        }
+
+        public function testNotTypeBoolean() {
+            $this->assertInstanceOf(Expect::class, expect('hello world')->not()->toBe()->aBoolean());
+        }
+
+        public function testFailingNotTypeBoolean() {
+            $this->expectException(TestFailedException::class);
+
+            expect(true)->not()->toBe()->aBoolean();
+        }
     }
 ?>
