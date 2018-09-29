@@ -384,5 +384,26 @@
 
             expect(new StdClass)->not()->toBe()->anObject();
         }
+
+        // Format JSON
+        public function testFormatJson() {
+            $this->assertInstanceOf(Expect::class, expect('{"hello": "world"}')->toBe()->aString()->inJsonFormat());
+        }
+
+        public function testFailingFormatJson() {
+            $this->expectException(TestFailedException::class);
+
+            expect('hello world')->toBe()->aString()->inJsonFormat();
+        }
+
+        public function testNotFormatJson() {
+            $this->assertInstanceOf(Expect::class, expect('hello world')->not()->toBe()->aString()->inJsonFormat());
+        }
+
+        public function testFailingNotFormatJson() {
+            $this->expectException(TestFailedException::class);
+
+            expect('{"hello": "world"}')->not()->toBe()->aString()->inJsonFormat();
+        }
     }
 ?>
