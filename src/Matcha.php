@@ -86,25 +86,56 @@
          * Run each test and report the errors if there is any.
          */
         public static function run(): Matcha {
+            $startOfRun = microtime(true);
+            $testDurationInMicroseconds = 0;
+
             $reporter = new ConsoleReporter;
             $reporter->setMaxEntries(static::$numberOfTest);
             $reporter->doNotClearProgress();
+            
+            $currentDescriptionIndex = 1;
+            $lastDescription = false;
+            $lastTest = false;
 
             foreach( static::$tests as $description => $tests ) {
                 $reporter->info("Running tests for \"$description\"");
 
+                $lastDescription = $currentDescriptionIndex === count(static::$tests);
+
+                $currentTestIndex = 1;
+
                 foreach( $tests as $expectedBehaviorString => $callableTest ) {
                     try {
+                        $lastTest = $currentTestIndex === count($tests);
+
+                        $currentTestIndex++;
+
+                        $startOfTest = microtime(true);
+
                         call_user_func($callableTest);
                     }
                     catch( TestFailedException $exception ) {
                         $reporter->error($exception->getMessage());
                     }
                     finally {
+                        $endOfTest = microtime(true);
+                        $testDurationInMicroseconds += $endOfTest - $startOfTest;
+
+                        if( $lastDescription === true && $lastTest === true ) {
+                            $endOfRun = microtime(true);
+                            $totalRunTimeInMicroseconds = $endOfRun - $startOfRun;
+                            $extraRunTimeInMicoseconds  = round($totalRunTimeInMicroseconds - $testDurationInMicroseconds, 4);
+                            $testDurationInMicroseconds = round($testDurationInMicroseconds, 4);
+
+                            $reporter->debug("tests ran in $testDurationInMicroseconds sec. (+$extraRunTimeInMicoseconds sec.)");
+                        }
+
                         $reporter->report();
                         $reporter->advance();
                     }
                 }
+
+                $currentDescriptionIndex++;
             }
 
             return new static;
