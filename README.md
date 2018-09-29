@@ -226,6 +226,7 @@ run();
     - [anInteger](#anInteger)
     - [aResource](#aResource)
     - [aString](#aString)
+      - [inJsonFormat](#inJsonFormat)
     - [equalTo](#equalto)
       - [false](#false)
       - [null](#null)
