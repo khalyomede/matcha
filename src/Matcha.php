@@ -105,12 +105,12 @@
                 $currentTestIndex = 1;
 
                 foreach( $tests as $expectedBehaviorString => $callableTest ) {
+                    $startOfTest = microtime(true);
+                    
                     try {
                         $lastTest = $currentTestIndex === count($tests);
 
                         $currentTestIndex++;
-
-                        $startOfTest = microtime(true);
 
                         call_user_func($callableTest);
                     }
