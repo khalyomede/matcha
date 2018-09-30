@@ -241,7 +241,7 @@
         }
 
         /**
-         * @return Khalyomede\Style\Expect
+         * @return \Khalyomede\Style\Expect
          */
         public function aBoolean(): Expect {
             $this->testsTypeBoolean = true;
@@ -250,7 +250,7 @@
         }
 
         /**
-         * @return Khalyomede\Style\Expect
+         * @return \Khalyomede\Style\Expect
          */
         public function anObject(): Expect {
             $this->testsTypeObject = true;
