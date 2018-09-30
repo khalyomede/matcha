@@ -46,7 +46,7 @@
         const FORMAT_JSON = 18;
 
         public static function correct(int $type): bool {
-            return in_array($type, static::availableTypes) === true;
+            return in_array($type, static::availableTypes()) === true;
         }
 
         protected static function availableTypes(): array {
