@@ -306,6 +306,10 @@
                 }
 
                 $message .= "to be reachable";
+
+                if( $this->hasDetail === true ) {
+                    $message .= " (reason: {$this->detail})";
+                }
             }
  
             return $message;
