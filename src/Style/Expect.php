@@ -551,7 +551,7 @@
                                 new PDO($dsn, $user, $password, $options);
                             }
                             catch( PDOException $exception ) {
-                                throw new TestFailedException( $message->checking(TestType::DATABASE_REACHABILITY)->build() );
+                                throw new TestFailedException( $message->checking(TestType::DATABASE_REACHABILITY)->withDetail($exception->getMessage())->build() );
                             }
                         }
                     }
