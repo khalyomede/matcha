@@ -40,6 +40,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 5: testing if a message has been displayed](#example-5-testing-if-a-message-has-been-displayed)
 - [Example 6: testing if a variable returns the desired type](example-6-testing-if-a-variable-returns-the-desired-type)
 - [Example 7: testing against a string format](#example-7-testing-against-a-string-format)
+- [Example 8: testing if a database is reachable](#example-8-testing-if-a-database-is-reachable)
 
 ### Example 1: testing if a code returns a string
 
@@ -155,6 +156,26 @@ describe('json', function() {
 run();
 ```
 
+### Example 8: testing if a database is reachable
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+
+describe('database connectivity', function() {
+  it('should be reachable', function() {
+    expect([
+      'driver' => 'mysql', 
+      'host' => 'ensembldb.ensembl.org', 
+      'user' => 'anonymous'
+    ])->toBe()->aDatabase()->thatIsAccessible();
+  });
+});
+
+run();
+```
+
 ## Full example
 
 This example is intended to show you how can all of these function can be mixed together.
@@ -217,6 +238,8 @@ run();
   - [strictly](#strictly)
   - [toBe](#tobe)
     - [aBoolean](#aBoolean)
+    - [aDatabase](#aDatabase)
+      - [thatIsAccessible](#thatIsAccessible)
     - [aDouble](#aDouble)
     - [aFloat](#aFloat)
     - [aFunction](#aFunction)
