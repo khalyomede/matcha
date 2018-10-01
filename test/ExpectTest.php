@@ -6,6 +6,9 @@
     use Khalyomede\Exception\TestFailedException;
 
     class ExpectTest extends TestCase {
+        const CORRECT_DATABASE_SERVER = ['driver' => 'mysql', 'host' => 'ensembldb.ensembl.org', 'user' => 'anonymous'];
+        const WRONG_DATABASE_SERVER = ['driver' => 'mysql', 'host' => 'ensembldb.ensembl.orgs', 'user' => 'anonymous'];
+
         // Equality against a value
         public function testEquality() {
             $this->assertInstanceOf(Expect::class, expect(1)->toBe()->equalTo(1));
@@ -404,6 +407,27 @@
             $this->expectException(TestFailedException::class);
 
             expect('{"hello": "world"}')->not()->toBe()->aString()->inJsonFormat();
+        }
+
+        // Database reachability
+        public function testDatabaseReachable() {
+            $this->assertInstanceOf(Expect::class, expect(static::CORRECT_DATABASE_SERVER)->toBe()->aDatabase()->thatIsAccessible());
+        }
+
+        public function testFailingDatabaseReachable() {
+            $this->expectException(TestFailedException::class);
+
+            expect(static::WRONG_DATABASE_SERVER)->toBe()->aDatabase()->thatIsAccessible();
+        }
+
+        public function testDatabaseNotReachable() {
+            $this->assertInstanceOf(Expect::class, expect(static::WRONG_DATABASE_SERVER)->not()->toBe()->aDatabase()->thatIsAccessible());
+        }
+
+        public function testFailingDatabaseNotReachable() {
+            $this->expectException(TestFailedException::class);
+
+            expect(static::CORRECT_DATABASE_SERVER)->not()->toBe()->aDatabase()->thatIsAccessible();
         }
     }
 ?>
