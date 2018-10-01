@@ -44,6 +44,7 @@
         const TYPE_BOOLEAN = 16;
         const TYPE_OBJECT = 17;
         const FORMAT_JSON = 18;
+        const DATABASE_REACHABILITY = 19;
 
         public static function correct(int $type): bool {
             return in_array($type, static::availableTypes()) === true;
