@@ -298,6 +298,15 @@
                     $message .= " (detail: {$this->detail}).";
                 }
             }
+            else if( $this->testType === TestType::DATABASE_REACHABILITY ) {
+                $message = "expected database on host {$this->actual['host']} ";
+
+                if( $this->negativeTest === true ) {
+                    $message = "not ";
+                }
+
+                $message .= "to be reachable";
+            }
  
             return $message;
         }
@@ -317,7 +326,7 @@
             else if( is_bool($string) === true ) {
                 $string = 'bool(' . ($string ? 'true' : 'false') . ')';
             }
-            else if( is_array($string) === true ) {
+            else if( is_array($string) === true) {
                 $string = print_r($string, true);
             }
             else if( is_string($string) === true ) {
