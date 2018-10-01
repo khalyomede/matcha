@@ -26,11 +26,15 @@
     namespace Khalyomede\Style;
 
     use Khalyomede\Exception\TestFailedException;
+    use Khalyomede\Exception\DriverNotSupportedException;
     use Khalyomede\Exception\TestFailedMessage;
     use Khalyomede\TestType;
+    use Khalyomede\Driver;
     use Throwable;
     use Exception;
     use InvalidArgumentException;
+    use PDO;
+    use PDOException;
 
     /**
      * Throw errors that will be catched by Matcha::it() and reported in the console according to the test order.
@@ -56,6 +60,8 @@
         protected $testsTypeObject;
         protected $testsDisplaySomething;
         protected $testsFormatJson;
+        protected $testsDatabase;
+        protected $testsDatabaseReachability;
         protected $isAFunction;
         protected $isInJsonFormat;
         protected $expected;
@@ -254,6 +260,24 @@
          */
         public function anObject(): Expect {
             $this->testsTypeObject = true;
+
+            return $this;
+        }
+
+        /**
+         * @return \Khalyomede\Style\Expect
+         */
+        public function aDatabase(): Expect {
+            $this->testsDatabase = true;
+
+            return $this;
+        }
+
+        /**
+         * @return \Khalyomede\Style\Expect
+         */
+        public function thatIsAccessible(): Expect {
+            $this->testsDatabaseReachability = true;
 
             return $this;
         }
@@ -492,6 +516,43 @@
                     else {
                         if( is_object($this->actual) === false ) {
                             throw new TestFailedException( $message->checking(TestType::TYPE_OBJECT)->build() );
+                        }
+                    }
+                }
+                else if( $this->testsDatabase === true ) {
+                    if( $this->testsDatabaseReachability === true ) {
+                        $driver = $this->actual['driver'];
+                        $host = $this->actual['host'];
+                        $user = $this->actual['user'];
+                        $password = $this->actual['password'] ?? '';
+                        $dsn = '';
+
+                        if( $driver === DRIVER::MYSQL ) {
+                            $dsn = "mysql:host=$host;";
+                        }
+                        else {
+                            throw new DriverNotSupportedException("Driver $driver not supported");
+                        }
+
+                        $options = $this->actual['options'] ?? [];
+
+                        if( $this->negativeTest === true ) {
+                            try {
+                                new PDO($dsn, $user, $password, $options);
+
+                                throw new TestFailedException( $message->checking(TestType::DATABASE_REACHABILITY)->negatively()->build() );
+                            }
+                            catch( PDOException $exception ) {
+
+                            }
+                        }
+                        else {                           
+                            try {
+                                new PDO($dsn, $user, $password, $options);
+                            }
+                            catch( PDOException $exception ) {
+                                throw new TestFailedException( $message->checking(TestType::DATABASE_REACHABILITY)->build() );
+                            }
                         }
                     }
                 }
