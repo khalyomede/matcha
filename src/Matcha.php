@@ -115,6 +115,7 @@
                         call_user_func($callableTest);
                     }
                     catch( TestFailedException $exception ) {
+                        $reporter->error('"it ' . $expectedBehaviorString . '" failed');
                         $reporter->error($exception->getMessage());
                     }
                     finally {
