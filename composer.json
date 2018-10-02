@@ -31,7 +31,8 @@
 			"src/describe.php",
 			"src/it.php",
 			"src/expect.php",
-			"src/run.php"
+			"src/run.php",
+			"src/report.php"
 		]
 	},
 	"require-dev": {

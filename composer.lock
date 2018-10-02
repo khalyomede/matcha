@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "khalyomede/console-reporter",
-            "version": "v0.1.5",
+            "version": "v0.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/khalyomede/console-reporter.git",
-                "reference": "6c5ed6eca089dbc9e4af831fc74e5408fc2e49c9"
+                "reference": "191559f87a924c653eb7f9bbca4fdb64f13d32fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/khalyomede/console-reporter/zipball/6c5ed6eca089dbc9e4af831fc74e5408fc2e49c9",
-                "reference": "6c5ed6eca089dbc9e4af831fc74e5408fc2e49c9",
+                "url": "https://api.github.com/repos/khalyomede/console-reporter/zipball/191559f87a924c653eb7f9bbca4fdb64f13d32fa",
+                "reference": "191559f87a924c653eb7f9bbca4fdb64f13d32fa",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
                 }
             ],
             "description": "Display a progress bar and logs in the same time to the console.",
-            "time": "2018-09-29T20:29:57+00:00"
+            "time": "2018-09-30T14:57:23+00:00"
         }
     ],
     "packages-dev": [
