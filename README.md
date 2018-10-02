@@ -41,6 +41,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 6: testing if a variable returns the desired type](example-6-testing-if-a-variable-returns-the-desired-type)
 - [Example 7: testing against a string format](#example-7-testing-against-a-string-format)
 - [Example 8: testing if a database is reachable](#example-8-testing-if-a-database-is-reachable)
+- [Example 9: make the console report detailed](#example-9-make-the-console-report-detailed)
 
 ### Example 1: testing if a code returns a string
 
@@ -176,6 +177,37 @@ describe('database connectivity', function() {
 run();
 ```
 
+### Example 9: make the console report detailed
+
+```php
+require(__DIR__ . '/../vendor/autoload.php');
+
+use function Khalyomede\Style\expect;
+use Khalyomede\ReportLevel;
+
+describe('array', function() {
+  it('should merge two arrays', function() {
+    expect( array_merge([1, 2, 3], [4, 5, 6]) )->toBe()->equalTo([1, 2, 3, 4, 5, 6]);
+  });
+
+  it('should diff two array', function() {
+    expect( array_count_values([1, 1, 3]) )->toBe()->equalTo([1 => 2, 3 => 1]);
+  });
+
+  it('should shuffle an array', function() {
+    $array = [1, 2];
+
+    expect( shuffle($array) )->toBe()->anArray();
+  });
+});
+
+report('detailed');
+// or
+report(ReportLevel::DETAILED);
+
+run();
+```
+
 ## Full example
 
 This example is intended to show you how can all of these function can be mixed together.
@@ -259,6 +291,7 @@ run();
     - [theException](#theException)
     - [theMessage](#theMessage)
 - [it](#it)
+- [report](#report)
 - [run](#run)
 
 ### expect
@@ -373,6 +406,26 @@ describe('implicit cast', function() {
 });
 
 run();
+```
+
+### Report
+
+Update the level of report in console.
+
+```php
+function report(string $level): void
+```
+
+Available reports levels are `detailed`, `normal` (by default) and `reduced`.
+
+Reports levels can be used through `Khalyomede\ReportLevel` class:
+
+```php
+use Khalyomede\ReportLevel;
+
+ReportLevel::DETAILED;
+ReportLevel::NORMAL;
+ReportLevel::REDUCED;
 ```
 
 ## Credits
