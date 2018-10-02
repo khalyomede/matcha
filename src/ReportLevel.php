@@ -26,8 +26,20 @@
     namespace Khalyomede;
 
     class ReportLevel {
-        const DETAILED = 3;
-        const NORMAL = 2;
-        const REDUCED = 1;
+        const DETAILED = 'detailed';
+        const NORMAL = 'normal';
+        const REDUCED = 'reduced';
+
+        public static function has(string $level): bool {
+            return in_array($level, static::availables());
+        }
+
+        public static function availables(): array {
+            return [
+                static::DETAILED,
+                static::NORMAL,
+                static::REDUCED
+            ];
+        }
     }
 ?>
