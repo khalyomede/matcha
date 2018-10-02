@@ -28,6 +28,7 @@
     use Khalyomede\Exception\TestFailedException;
     use Khalyomede\ConsoleReporter;
     use Khalyomede\ReportLevel;
+    use InvalidArgumentException;
 
     /**
      * This class deals with grouping tests and running test in batch.
@@ -64,7 +65,7 @@
          * Stores the detail level of the reports.
          * By default it is set to "normal".
          * 
-         * @var int
+         * @var string
          * @see \Khalyomede\ReportLevel
          */
         protected static $reportLevel = ReportLevel::NORMAL;
@@ -117,6 +118,27 @@
         public static function quiet(): Matcha {
             static::$reportLevel = ReportLevel::REDUCED;
 
+            return new static;
+        }
+
+        /**
+         * Manually set the report level.
+         * 
+         * @param string $level
+         * @return \Khalyomede\Matcha
+         * @throws InvalidArgumentException If the report level is not valid.
+         * @see \Khalyomede\ReportLevel
+         */
+        public static function setReportLevel(string $level): Matcha {
+            if( ReportLevel::has($level) === false ) {
+                throw new InvalidArgumentException(sprintf('The report level should be one of the following: %s, %s given', 
+                    implode(', ', ReportLevel::availables()),
+                    $level
+                )); 
+            }
+
+            static::$reportLevel = $level;
+            
             return new static;
         }
 
