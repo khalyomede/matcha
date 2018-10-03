@@ -429,5 +429,26 @@
 
             expect(static::CORRECT_DATABASE_SERVER)->not()->toBe()->aDatabase()->thatIsAccessible();
         }
+
+        // Type file
+        public function testTypeFile() {
+            $this->assertInstanceOf(Expect::class, expect(__DIR__ . '/ExpectTest.php')->toBe()->aFile());
+        }
+
+        public function testFailingTypeFile() {
+            $this->expectException(TestFailedException::class);
+
+            expect(__DIR__ . '/PHP6Test.php')->toBe()->aFile();
+        }
+
+        public function testNotTypeFile() {
+            $this->assertInstanceOf(Expect::class, expect(__DIR__ . '/PHP6Test.php')->not()->toBe()->aFile());
+        }
+
+        public function testFailingNotTypeFile() {
+            $this->expectException(TestFailedException::class);
+
+            expect(__DIR__ . '/ExpectTest.php')->not()->toBe()->aFile();
+        }
     }
 ?>
