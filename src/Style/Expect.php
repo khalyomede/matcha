@@ -62,6 +62,7 @@
         protected $testsFormatJson;
         protected $testsDatabase;
         protected $testsDatabaseReachability;
+        protected $testsIsFile;
         protected $isAFunction;
         protected $isInJsonFormat;
         protected $expected;
@@ -278,6 +279,15 @@
          */
         public function thatIsAccessible(): Expect {
             $this->testsDatabaseReachability = true;
+
+            return $this;
+        }
+
+        /**
+         * @return \Khalyomede\Style\Expect
+         */
+        public function aFile(): Expect {
+            $this->testsIsFile = true;
 
             return $this;
         }
@@ -553,6 +563,18 @@
                             catch( PDOException $exception ) {
                                 throw new TestFailedException( $message->checking(TestType::DATABASE_REACHABILITY)->withDetail($exception->getMessage())->build() );
                             }
+                        }
+                    }
+                }
+                else if( $this->testsIsFile === true ) {
+                    if( $this->negativeTest === true ) {
+                        if( is_file($this->actual) === true ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_FILE)->negatively()->build() );
+                        }
+                    }
+                    else {
+                        if( is_file($this->actual) === false ) {
+                            throw new TestFailedException( $message->checking(TestType::TYPE_FILE)->build() );
                         }
                     }
                 }
