@@ -311,6 +311,15 @@
                     $message .= " (reason: {$this->detail})";
                 }
             }
+            else if( $this->testType === TestType::TYPE_FILE ) {
+                $message = "expected $actual";
+
+                if( $this->negativeTest === true ) {
+                    $message .= "not ";
+                }
+
+                $message .= "to be a file";
+            }
  
             return $message;
         }
