@@ -273,6 +273,7 @@ run();
     - [aDatabase](#aDatabase)
       - [thatIsAccessible](#thatIsAccessible)
     - [aDouble](#aDouble)
+    - [aFile](#aFile)
     - [aFloat](#aFloat)
     - [aFunction](#aFunction)
     - [anArray](#anArray)
