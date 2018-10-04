@@ -190,6 +190,7 @@
             $reporter = new ConsoleReporter;
             $reporter->setMaxEntries(static::$numberOfTest);
             $reporter->doNotClearProgress();
+            $reporter->displaySeverityWithIcons();
             
             $currentDescriptionIndex = 1;
             $lastDescription = false;
@@ -218,7 +219,7 @@
                         call_user_func($callableTest);
 
                         if( static::$reportLevel === ReportLevel::DETAILED ) {
-                            $reporter->info('"it ' . $expectedBehaviorString . '" completed');
+                            $reporter->success('"it ' . $expectedBehaviorString . '" completed');
                         }
 
                         $completedTests++;
