@@ -257,6 +257,10 @@
                 $currentDescriptionIndex++;
             }
 
+            if( $failedTests > 0 ) {
+                exit(1);
+            }
+
             return new static;
         }
     }
