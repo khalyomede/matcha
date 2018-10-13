@@ -42,6 +42,8 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 7: testing against a string format](#example-7-testing-against-a-string-format)
 - [Example 8: testing if a database is reachable](#example-8-testing-if-a-database-is-reachable)
 - [Example 9: make the console report detailed](#example-9-make-the-console-report-detailed)
+- [Example 10: using matcha console command on a single file](#example-10-using-matcha-console-command-on-a-single-file)
+- [Example 11: using matcha console command on a folder](example-11-using-matcha-console-command-on-a-folder)
 
 ### Example 1: testing if a code returns a string
 
@@ -206,6 +208,46 @@ report('detailed');
 report(ReportLevel::DETAILED);
 
 return run();
+```
+
+### Example 10: using matcha console command
+
+```php
+use function Khalyomede\Style\expect;
+
+describe('abs', function() {
+  it('it should give the absolute value for a positive value', function() {
+    expect(abs(-10 + 2))->toBe()->equalTo(8);
+  });
+
+  it('should give the absolute value for a positive value', function() {
+    expect(abs(10 + 2))->toBe()->equalTo(12);
+  });
+});
+```
+
+```bash
+$ bin/matcha example/tests/example-10.php
+
+  2018-10-13 18:55:11.628200  ⓘ  Running tests for "abs"
+  2018-10-13 18:55:11.630700  ⚐  2 tests completed, 0 tests failed
+  2018-10-13 18:55:11.630800  ⚐  tests ran in 0.0015 sec. (+0.0018 sec.)
+  2 / 2 ▓▓ 100 %
+```
+
+### Example 11: using matcha console command on a folder
+
+_Check /example/tests, all the files that ends with `.php`. You are not constraint by the extension `.test.php`, you can ommit it._
+
+```bash
+$ bin/matcha example/tests/
+
+  2018-10-13 18:58:05.348300  ⓘ  Running tests for "abs"
+  2018-10-13 18:58:05.351300  ⓘ  Running tests for "array_sum"
+  2018-10-13 18:58:05.351400  ⓘ  Running tests for "count"
+  2018-10-13 18:58:05.351500  ⚐  8 tests completed, 0 tests failed
+  2018-10-13 18:58:05.351500  ⚐  tests ran in 0.0019 sec. (+0.0022 sec.)
+  8 / 8 ▓▓▓▓▓▓▓▓ 100 %
 ```
 
 ## Full example
