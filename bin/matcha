@@ -1,0 +1,49 @@
+#!/usr/bin/env php
+
+<?php
+    const SYSTEM_FILES = ['.', '..'];
+
+    if( $argc != 2 ) {
+        echo "wrong parameter count (usage: matcha <file> or matcha <folder>)" . PHP_EOL;
+        
+        exit(1);
+    }
+
+    $fileOrFolder = $argv[1];
+
+    if( ! is_dir($fileOrFolder) && ! is_file($fileOrFolder) ) {
+        echo "$fileOrFolder is not a valid file or directory" . PHP_EOL;
+        
+        exit(2);
+    }
+
+    if( is_file($fileOrFolder) ) {
+        $file = $fileOrFolder;
+
+        require(__DIR__ . '/../vendor/autoload.php');
+
+        include($file);
+
+        $status = Khalyomede\Matcha::run();
+
+        exit( $status );
+    }
+
+    if( is_dir($fileOrFolder) ) {        
+        $folder = $fileOrFolder;
+        $files = scandir($folder);
+        $files = array_diff($files, SYSTEM_FILES);
+
+        require(__DIR__ . '/../vendor/autoload.php');
+
+        foreach( $files as $file ) {
+            $filePath = "$folder$file";
+
+            include($filePath);
+        }
+
+        $status = Khalyomede\Matcha::run();
+
+        exit( $status );
+    }
+?>
