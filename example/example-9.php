@@ -23,5 +23,5 @@
     report('detailed');
     // report(ReportLevel::DETAILED);
 
-    run();
+    return run();
 ?>
