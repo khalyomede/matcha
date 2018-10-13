@@ -183,7 +183,7 @@
         /**
          * Run each test and report the errors if there is any.
          */
-        public static function run(): Matcha {
+        public static function run(): int {
             $startOfRun = microtime(true);
             $testDurationInMicroseconds = 0;
 
@@ -258,10 +258,11 @@
             }
 
             if( $failedTests > 0 ) {
-                exit(1);
+                return 1;
             }
-
-            return new static;
+            else {
+                return 0;
+            }
         }
     }
 ?>
