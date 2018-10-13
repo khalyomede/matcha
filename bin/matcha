@@ -20,7 +20,19 @@
     if( is_file($fileOrFolder) ) {
         $file = $fileOrFolder;
 
-        require(__DIR__ . '/../vendor/autoload.php');
+        $composerPath = __DIR__ . '/../../../../vendor/autoload.php';
+        
+        if( is_file($composerPath) === false ) {
+            $composerPath = __DIR__ . '/../vendor/autoload.php';
+        }
+
+        if( is_file($composerPath) === false ) {
+            echo "Composer autoloader could not be found (did you ran composer update?)." . PHP_EOL;
+
+            exit(4);
+        }
+
+        require($composerPath);
 
         include($file);
 
