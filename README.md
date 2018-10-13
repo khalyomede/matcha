@@ -56,7 +56,7 @@ describe('trim', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 2: testing if a value is true
@@ -72,7 +72,7 @@ describe('empty', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 3: testing if a code returns false
@@ -88,7 +88,7 @@ describe('isset', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 4: testing the negativity of an expression
@@ -104,7 +104,7 @@ describe('array-sum', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 5: testing if a message has been displayed
@@ -122,7 +122,7 @@ describe('echo', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 6: testing if a variable returns the desired type
@@ -138,7 +138,7 @@ describe('empty', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 7: testing against a string format
@@ -154,7 +154,7 @@ describe('json', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 8: testing if a database is reachable
@@ -174,7 +174,7 @@ describe('database connectivity', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Example 9: make the console report detailed
@@ -205,7 +205,7 @@ report('detailed');
 // or
 report(ReportLevel::DETAILED);
 
-run();
+return run();
 ```
 
 ## Full example
@@ -259,7 +259,7 @@ describe('isset', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ## API
@@ -340,7 +340,7 @@ describe('empty', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### strictly
@@ -362,7 +362,7 @@ describe('int cast', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### toBe
@@ -384,7 +384,7 @@ describe('trim', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### equalTo
@@ -406,7 +406,7 @@ describe('implicit cast', function() {
   });
 });
 
-run();
+return run();
 ```
 
 ### Report
