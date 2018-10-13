@@ -34,10 +34,22 @@
         $files = scandir($folder);
         $files = array_diff($files, SYSTEM_FILES);
 
-        require(__DIR__ . '/../vendor/autoload.php');
+        $composerPath = __DIR__ . '/../../../../vendor/autoload.php';
+        
+        if( is_file($composerPath) === false ) {
+            $composerPath = __DIR__ . '/../vendor/autoload.php';
+        }
+
+        if( is_file($composerPath) === false ) {
+            echo "Composer autoloader could not be found (did you ran composer update?)." . PHP_EOL;
+
+            exit(4);
+        }
+
+        require($composerPath);
 
         foreach( $files as $file ) {
-            $filePath = "$folder$file";
+            $filePath = "$folder/$file";
 
             include($filePath);
         }
