@@ -13,7 +13,7 @@ Unit test library that taste good.
 
 <br />
 
-![Gif of an example of usage](https://image.ibb.co/d1Lqoe/matcha_landing_gif.gif)
+![Gif of an example of usage](https://image.ibb.co/eKPpjU/landing-page-matcha-v-0-13-1.gif)
 
 ## Summary
 
