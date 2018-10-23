@@ -191,6 +191,7 @@
             $reporter->setMaxEntries(static::$numberOfTest);
             $reporter->doNotClearProgress();
             $reporter->displaySeverityWithIcons();
+            $reporter->setProgressBarSize(36);
             
             $currentDescriptionIndex = 1;
             $lastDescription = false;
