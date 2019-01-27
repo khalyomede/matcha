@@ -38,7 +38,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 3: testing if a code returns null](#example-3-testing-if-a-code-returns-null)
 - [Example 4: testing the negativity of an expression](#example-4-testing-the-negativity-of-an-expression)
 - [Example 5: testing if a message has been displayed](#example-5-testing-if-a-message-has-been-displayed)
-- [Example 6: testing if a variable returns the desired type](example-6-testing-if-a-variable-returns-the-desired-type)
+- [Example 6: testing if a variable returns the desired type](#example-6-testing-if-a-variable-returns-the-desired-type)
 - [Example 7: testing against a string format](#example-7-testing-against-a-string-format)
 - [Example 8: testing if a database is reachable](#example-8-testing-if-a-database-is-reachable)
 - [Example 9: make the console report detailed](#example-9-make-the-console-report-detailed)
