@@ -43,7 +43,7 @@ composer require --dev khalyomede\matcha:0.*
 - [Example 8: testing if a database is reachable](#example-8-testing-if-a-database-is-reachable)
 - [Example 9: make the console report detailed](#example-9-make-the-console-report-detailed)
 - [Example 10: using matcha console command on a single file](#example-10-using-matcha-console-command-on-a-single-file)
-- [Example 11: using matcha console command on a folder](example-11-using-matcha-console-command-on-a-folder)
+- [Example 11: using matcha console command on a folder](#example-11-using-matcha-console-command-on-a-folder)
 
 ### Example 1: testing if a code returns a string
 
