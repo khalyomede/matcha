@@ -210,7 +210,7 @@ report(ReportLevel::DETAILED);
 return run();
 ```
 
-### Example 10: using matcha console command
+### Example 10: using matcha console command on a single file
 
 ```php
 use function Khalyomede\Style\expect;
