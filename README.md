@@ -28,7 +28,7 @@ Unit test library that taste good.
 In your project root folder:
 
 ```bash
-composer require --dev khalyomede\matcha:0.*
+composer require --dev khalyomede/matcha:0.*
 ```
 
 ## Examples
